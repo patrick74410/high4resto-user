@@ -25,7 +25,12 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "mdi.svg",
+                "input": "./node_modules/@mdi/angular-material",
+                "output": "./assets"
+              }
             ],
             "styles": [
               "src/styles.scss"
@@ -89,7 +94,12 @@
             "karmaConfig": "karma.conf.js",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "mdi.svg",
+                "input": "./node_modules/@mdi/angular-material",
+                "output": "./assets"
+              }
             ],
             "styles": [
               "src/styles.scss"
@@ -171,6 +181,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "high4resto-frontEnd"
 }
