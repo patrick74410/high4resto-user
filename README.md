@@ -4,6 +4,15 @@ Simple test 6
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.0.
 
+## Create the `application.config.json` file in the project
+```
+{
+  "auth0":{
+    "domain": "YOUR_AUTH0_DOMAIN",
+    "clientId": "YOUR_AUTH0_CLIENT_ID"
+  }
+}
+```
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
