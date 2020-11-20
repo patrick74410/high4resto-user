@@ -9,7 +9,6 @@ export const environment = {
   auth: {
     domain: auth0.domain,
     clientId: auth0.clientId,
-    redirectUri: window.location.origin,
   },
 };
 
