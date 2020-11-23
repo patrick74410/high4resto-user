@@ -7,13 +7,13 @@ import { AppComponent } from './app.component';
 import { AppModule } from './app.module';
 
 @NgModule({
-  imports: [AppModule, ServerModule, FlexLayoutServerModule],
-  providers: [
-    {
-      provide: AuthService,
-      useClass: ServerAuthService,
-    },
-  ],
-  bootstrap: [AppComponent],
+    imports: [AppModule, ServerModule, FlexLayoutServerModule],
+    providers: [
+        {
+            provide: AuthService,
+            useClass: ServerAuthService,
+        },
+    ],
+    bootstrap: [AppComponent],
 })
 export class AppServerModule {}

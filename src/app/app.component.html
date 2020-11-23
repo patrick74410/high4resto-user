@@ -1,13 +1,19 @@
 <mat-toolbar>
-  <span fxFlex></span>
-  <ng-container [ngSwitch]="auth.isAuthenticated$ | async">
-    <a mat-button *ngSwitchCase="false" (click)="auth.loginWithRedirect()"
-      >Connexion</a
-    >
-    <ng-container *ngSwitchCase="true">
-      {{ (auth.user$ | async)?.email }}
-
-      <a mat-button (click)="auth.logout()">Déconnexion</a>
+    <ng-container *ngIf="homePageService.homePage$ | async as homePage">
+        {{ homePage.identite.nomEtablissement }}
+        <a *ngFor="let articleCategory of homePage.articleCategorie" mat-button>
+            {{ articleCategory.name }}
+        </a>
     </ng-container>
-  </ng-container>
+    <span fxFlex></span>
+    <ng-container [ngSwitch]="auth.isAuthenticated$ | async">
+        <a mat-button *ngSwitchCase="false" (click)="auth.loginWithRedirect()"
+            >Connexion</a
+        >
+        <ng-container *ngSwitchCase="true">
+            {{ (auth.user$ | async)?.email }}
+
+            <a mat-button (click)="auth.logout()">Déconnexion</a>
+        </ng-container>
+    </ng-container>
 </mat-toolbar>

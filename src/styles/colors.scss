@@ -1,60 +1,60 @@
 // This provide attributes and classes to colorizes HTML Elements depending on the Material theme
 @mixin configure-colors($theme) {
-  $primary: map-get($theme, primary);
-  $accent: map-get($theme, accent);
-  $background: map-get($theme, background);
-  $foreground: map-get($theme, foreground);
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
 
-  [text-primary],
-  .text-primary,
-  highlight {
-    color: mat-color($primary);
-  }
-  [background-primary],
-  .background-primary {
-    background: mat-color($primary);
-    color: mat-color($primary, default-contrast);
-  }
-  [background-primary-light],
-  .background-primary-light {
-    background: mat-color($primary, lighter);
-    color: mat-contrast($primary, 300);
+    [text-primary],
+    .text-primary,
+    highlight {
+        color: mat-color($primary);
+    }
+    [background-primary],
+    .background-primary {
+        background: mat-color($primary);
+        color: mat-color($primary, default-contrast);
+    }
+    [background-primary-light],
+    .background-primary-light {
+        background: mat-color($primary, lighter);
+        color: mat-contrast($primary, 300);
+        .text-secondary {
+            color: mat-color($mat-light-theme-foreground, secondary-text);
+        }
+        .text-disabled {
+            color: mat-color($mat-light-theme-foreground, disabled-text);
+        }
+    }
+    [background-primary-dark],
+    .background-primary-dark {
+        background: mat-color($primary, 700);
+        color: mat-contrast($primary, 700);
+    }
+
+    [text-accent] {
+        color: mat-color($primary);
+    }
+    .background {
+        background-color: map_get($mat-grey, 200);
+    }
+
+    .background-dark {
+        background-color: map_get($mat-grey, 600);
+    }
+
+    .background-light {
+        background-color: map_get($mat-grey, 100);
+    }
+    .background-surface {
+        background-color: map-get($background, card);
+    }
+
     .text-secondary {
-      color: mat-color($mat-light-theme-foreground, secondary-text);
+        color: mat-color($foreground, secondary-text);
     }
+
     .text-disabled {
-      color: mat-color($mat-light-theme-foreground, disabled-text);
+        color: mat-color($foreground, disabled-text);
     }
-  }
-  [background-primary-dark],
-  .background-primary-dark {
-    background: mat-color($primary, 700);
-    color: mat-contrast($primary, 700);
-  }
-
-  [text-accent] {
-    color: mat-color($primary);
-  }
-  .background {
-    background-color: map_get($mat-grey, 200);
-  }
-
-  .background-dark {
-    background-color: map_get($mat-grey, 600);
-  }
-
-  .background-light {
-    background-color: map_get($mat-grey, 100);
-  }
-  .background-surface {
-    background-color: map-get($background, card);
-  }
-
-  .text-secondary {
-    color: mat-color($foreground, secondary-text);
-  }
-
-  .text-disabled {
-    color: mat-color($foreground, disabled-text);
-  }
 }

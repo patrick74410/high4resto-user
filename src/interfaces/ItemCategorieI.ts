@@ -1,6 +1,6 @@
 import { ImageI } from './ImageI';
-// Catégorie d'articles
-export interface ArticleCategorieI {
+// Catégorie de menu
+export interface ItemCategorieI {
     id?: string;
     // Nom de la catégorie
     name: string;
@@ -8,10 +8,8 @@ export interface ArticleCategorieI {
     description: string;
     // Ordre d'affichage
     order?: number;
-    // Image pour la miniature
+    // Miniature
     iconImage?: ImageI;
-    // Image de la présentation de l'article
+    // Image pour la présentation
     image?: ImageI;
-    //
-    visible: boolean;
 }

@@ -1,22 +1,23 @@
 import { GpsI } from './GpsI';
-import { ImageI } from './imageI';
-import {KeyMapI} from './KeymapI'
+import { ImageI } from './ImageI';
+import { KeyMapI } from './KeymapI';
+
 // Identité de l'établissement
 export interface IdentiteI {
-    id:String;
+    id: string;
     // Info de base
-    nomEtablissement:String;
-    siret:String;
-    logo:ImageI;
+    nomEtablissement: string;
+    siret: string;
+    logo: ImageI;
     // Adresse
-    zip:String;
-    city:String;
-    number:String;
-    adresse:String;
-    complement:String;
-    contact:KeyMapI[];
-    coordonnee:GpsI;
+    zip: string;
+    city: string;
+    number: string;
+    adresse: string;
+    complement: string;
+    contact: KeyMapI[];
+    coordonnee: GpsI;
 
     // Description de l'établissement
-    description:String;
+    description: string;
 }

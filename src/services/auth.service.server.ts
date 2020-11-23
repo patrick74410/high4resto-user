@@ -5,8 +5,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root',
+    providedIn: 'root',
 })
 export class ServerAuthService {
-  isAuthenticated$ = new BehaviorSubject(false);
+    isAuthenticated$ = new BehaviorSubject(false);
 }
