@@ -17,3 +17,16 @@
         </ng-container>
     </ng-container>
 </mat-toolbar>
+
+<ul *ngIf="categorieList$ | async as categorieList">
+    <li *ngFor="let categorie of categorieList">
+        {{ categorie.name }}
+    </li>
+</ul>
+<ul *ngIf="itemCarteList$ | async as itemCarteList">
+    <li *ngFor="let itemCarte of itemCarteList">
+        {{ itemCarte.name }}
+    </li>
+</ul>
+
+<app-map></app-map>

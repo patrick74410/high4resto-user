@@ -3,10 +3,10 @@ import { first } from 'rxjs/operators';
 import { HomePageService } from 'src/services/home.service';
 
 // Provide an initializer function that returns a Promise
-export function appInitializer(
+export const appInitializer = (
     homePageService: HomePageService,
     metaService: Meta
-) {
+) => {
     return () =>
         homePageService.homePage$
             .pipe(first())
@@ -55,4 +55,4 @@ export function appInitializer(
                     });
                 });
             }); // Set the config that was loaded asynchronously here
-}
+};

@@ -22,6 +22,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
+import { ComponentsModule } from 'src/components/components.module';
 
 const materialModules = [
     MatCardModule,
@@ -47,6 +48,12 @@ const materialModules = [
 ];
 
 @NgModule({
-    exports: [CommonModule, ...materialModules, FlexLayoutModule, RouterModule],
+    exports: [
+        CommonModule,
+        ...materialModules,
+        FlexLayoutModule,
+        RouterModule,
+        ComponentsModule,
+    ],
 })
 export class SharedModule {}

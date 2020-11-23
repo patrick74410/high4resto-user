@@ -4,7 +4,7 @@ export interface PromotionI {
     // Nom
     name: string;
     // Montant de la réduction
-    reduction: Number;
+    reduction: number;
     // Quand ?
     heureDebut: string;
     heureFin: string;
