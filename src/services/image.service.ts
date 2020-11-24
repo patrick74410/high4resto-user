@@ -1,30 +1,30 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment as env } from '../environments/environment';
-import { ArticleCategorieI } from '../interfaces/ArticleCategorieI';
-import { ArticleI } from '../interfaces/ArticleI';
+import { ImageCategorieI } from '../interfaces/ImageCategorie';
+import { ImageI } from '../interfaces/ImageI';
 
 @Injectable({
     providedIn: 'root',
 })
-export class ArticleService {
+export class ImageService {
     constructor(private http: HttpClient) {}
 
     getCategorieList() {
-        return this.http.get<ArticleCategorieI[]>(
-            `${env.apiUrl}/articleCategorie/find/`
+        return this.http.get<ImageCategorieI[]>(
+            `${env.apiUrl}/imageCategorie/find/`
         );
     }
 
-    getArticleListOfCategorie(categorieId) {
-        return this.http.get<ArticleI[]>(
-            `${env.apiUrl}/article/filter/${categorieId}`
+    getImageListOfCategorie(categorieId) {
+        return this.http.get<ImageI[]>(
+            `${env.apiUrl}/image/filter/${categorieId}`
         );
     }
 
-    getArticleById(articleId) {
-        return this.http.get<ArticleI>(
-            `${env.apiUrl}/article/find/${articleId}`
+    getImageById(imageId) {
+        return this.http.get<ImageI>(
+            `${env.apiUrl}/image/find/${imageId}`
         );
     }
 }
