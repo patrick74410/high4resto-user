@@ -4,16 +4,32 @@
 @import 'styles/colors.scss';
 @import 'styles/margins-padding.scss';
 
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
 @include mat-core();
 
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
-$app-primary: mat-palette($mat-deep-orange);
-$app-accent: mat-palette($mat-pink, A200, A100, A400);
+$app-primary: mat-palette(
+    map-merge(
+        /* Select a palette from Material Palette as base from material.io/resources/color/ */
+            $mat-green,
+        /* Override the closest palette color hue with our own color */
+            (
+                900: #21522f,
+            )
+    ),
+    900 /* Set the overrided hue as default color */
+);
+
+$app-accent: mat-palette(
+    map-merge(
+        /* Select a palette from Material Palette as base from material.io/resources/color/ */
+            $mat-green,
+        /* Override the palette color with our own color */
+            (
+                600: #f9c314,
+            )
+    ),
+    600 /* Set the overrided hue as default color */
+);
 
 // Create the theme object (a Sass map containing all of the palettes).
 $app-theme: mat-light-theme($app-primary, $app-accent);

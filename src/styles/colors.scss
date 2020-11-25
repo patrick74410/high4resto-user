@@ -33,7 +33,7 @@
     }
 
     [text-accent] {
-        color: mat-color($primary);
+        color: mat-color($accent);
     }
     .background {
         background-color: map_get($mat-grey, 200);

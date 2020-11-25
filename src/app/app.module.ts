@@ -22,15 +22,9 @@ import { SharedModule } from './shared.module';
         {
             provide: APP_INITIALIZER,
             useFactory: appInitializer, // <- pass your initializer function here
-            deps: [HomePageService, Meta],
+            deps: [HomePageService, Meta, MatIconRegistry, DomSanitizer],
             multi: true,
         },
     ],
 })
-export class AppModule {
-    constructor(iconRegistry: MatIconRegistry, domSanitizer: DomSanitizer) {
-        iconRegistry.addSvgIconSet(
-            domSanitizer.bypassSecurityTrustResourceUrl('./assets/mdi.svg')
-        );
-    }
-}
+export class AppModule {}

@@ -1,32 +1,140 @@
-<mat-toolbar>
-    <ng-container *ngIf="homePageService.homePage$ | async as homePage">
-        {{ homePage.identite.nomEtablissement }}
-        <a *ngFor="let articleCategory of homePage.articleCategorie" mat-button>
-            {{ articleCategory.name }}
-        </a>
-    </ng-container>
-    <span fxFlex></span>
-    <ng-container [ngSwitch]="auth.isAuthenticated$ | async">
-        <a mat-button *ngSwitchCase="false" (click)="auth.loginWithRedirect()"
-            >Connexion</a
-        >
-        <ng-container *ngSwitchCase="true">
-            {{ (auth.user$ | async)?.email }}
+<!-- Mobile layout -->
+<ng-container *ngIf="media.isActive('lt-md')">
+    <mat-drawer-container fxFlexFill>
+        <mat-drawer #drawer style="width: 280px" padding-top>
+            <a
+                [routerLink]="['']"
+                (click)="drawer.close()"
+                style="text-decoration: none"
+                ><ng-container *ngTemplateOutlet="logo"></ng-container
+            ></a>
+            <mat-divider margin-top></mat-divider>
+            <mat-nav-list>
+                <a
+                    mat-list-item
+                    *ngFor="let nav of navigationList"
+                    [routerLink]="[nav.route]"
+                    (click)="drawer.close()"
+                >
+                    <mat-icon
+                        matListIcon
+                        class="text-secondary"
+                        [svgIcon]="nav.icon"
+                    ></mat-icon>
+                    <p matLine>{{ nav.label }}</p>
+                </a>
+                <mat-divider margin-top margin-bottom></mat-divider>
+                <ng-container [ngSwitch]="auth.isAuthenticated$ | async">
+                    <a
+                        mat-list-item
+                        *ngSwitchCase="false"
+                        (click)="auth.loginWithRedirect()"
+                    >
+                        <mat-icon
+                            matListIcon
+                            class="text-secondary"
+                            svgIcon="login"
+                        ></mat-icon>
+                        <p matLine>Connexion</p>
+                    </a>
+                    <a
+                        mat-list-item
+                        *ngSwitchCase="true"
+                        (click)="auth.logout()"
+                    >
+                        <mat-icon
+                            matListIcon
+                            class="text-secondary"
+                            svgIcon="logout"
+                        ></mat-icon>
+                        <p matLine>Déconnexion</p>
+                    </a>
+                </ng-container>
+            </mat-nav-list>
+        </mat-drawer>
+        <mat-drawer-content>
+            <mat-toolbar color="primary">
+                <button mat-icon-button (click)="drawer.toggle()">
+                    <mat-icon>menu</mat-icon>
+                </button>
+                <h3 margin-left-x3 text-accent>
+                    {{ appTitle.appTitle$ | async }}
+                </h3>
+            </mat-toolbar>
+            <router-outlet></router-outlet>
+        </mat-drawer-content>
+    </mat-drawer-container>
+</ng-container>
 
-            <a mat-button (click)="auth.logout()">Déconnexion</a>
-        </ng-container>
-    </ng-container>
-</mat-toolbar>
+<!-- Desktop layout -->
+<ng-container *ngIf="media.isActive('gt-sm')">
+    <section fxFlexFill fxLayout="row" fxLayoutAlign="center start">
+        <div fxFlex="0 1 1280px">
+            <mat-toolbar
+                class="mat-elevation-z2"
+                style="border-radius: 0 0 8px 8px; height: 56px"
+            >
+                <a
+                    [routerLink]="['']"
+                    style="text-decoration: none"
+                    margin-right-x3
+                    ><ng-container *ngTemplateOutlet="logo"></ng-container
+                ></a>
+                <div style="height: 100%" fxLayout="row">
+                    <mat-divider vertical></mat-divider>
 
-<ul *ngIf="categorieList$ | async as categorieList">
-    <li *ngFor="let categorie of categorieList">
-        {{ categorie.name }}
-    </li>
-</ul>
-<ul *ngIf="itemCarteList$ | async as itemCarteList">
-    <li *ngFor="let itemCarte of itemCarteList">
-        {{ itemCarte.name }}
-    </li>
-</ul>
+                    <ng-container *ngFor="let nav of navigationList">
+                        <a
+                            [routerLink]="[nav.route]"
+                            style="text-decoration: none"
+                            class="text-primary mat-body-strong"
+                            padding-left-x3
+                            padding-right-x3
+                            routerLinkActive="background-primary text-accent"
+                            matRipple
+                            fxLayout="row"
+                            fxLayoutAlign="start center"
+                        >
+                            {{ nav.label }}
+                        </a>
+                        <mat-divider vertical></mat-divider>
+                    </ng-container>
+                </div>
 
-<app-map></app-map>
+                <span fxFlex></span>
+                <ng-container [ngSwitch]="auth.isAuthenticated$ | async">
+                    <a
+                        mat-button
+                        *ngSwitchCase="false"
+                        (click)="auth.loginWithRedirect()"
+                        >Connexion</a
+                    >
+                    <ng-container *ngSwitchCase="true">
+                        {{ (auth.user$ | async)?.email }}
+                        <a mat-button (click)="auth.logout()">Déconnexion</a>
+                    </ng-container>
+                </ng-container>
+            </mat-toolbar>
+
+            <router-outlet></router-outlet>
+        </div>
+    </section>
+</ng-container>
+
+<!-- Logo layout -->
+<ng-template #logo>
+    <div
+        *ngIf="homePageService.homePage$ | async as homePage"
+        fxLayout="row"
+        fxLayoutAlign="start center"
+        style="height: 56px"
+    >
+        <img
+            style="width: 48px; height: 48px"
+            [src]="homePage.identite.logo.link"
+            margin-left-x2
+            margin-right-x3
+        />
+        <h2 no-margin>{{ homePage.identite.nomEtablissement }}</h2>
+    </div>
+</ng-template>

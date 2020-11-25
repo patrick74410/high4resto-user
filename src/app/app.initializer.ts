@@ -1,14 +1,20 @@
-import { Meta } from '@angular/platform-browser';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer, Meta } from '@angular/platform-browser';
 import { first } from 'rxjs/operators';
 import { HomePageService } from 'src/services/home.service';
 
 // Provide an initializer function that returns a Promise
 export const appInitializer = (
     homePageService: HomePageService,
-    metaService: Meta
+    metaService: Meta,
+    iconRegistry: MatIconRegistry,
+    domSanitizer: DomSanitizer
 ) => {
-    return () =>
-        homePageService.homePage$
+    return () => {
+        iconRegistry.addSvgIconSet(
+            domSanitizer.bypassSecurityTrustResourceUrl('./assets/mdi.svg')
+        );
+        return homePageService.homePage$
             .pipe(first())
             .toPromise()
             .then((homePage) => {
@@ -55,4 +61,5 @@ export const appInitializer = (
                     });
                 });
             }); // Set the config that was loaded asynchronously here
+    };
 };
