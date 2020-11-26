@@ -7,9 +7,9 @@ import { AppTitleService } from 'src/services/title.service';
     styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent implements OnInit {
-    constructor(private appTitle: AppTitleService) {}
-
-    ngOnInit(): void {
+    constructor(private appTitle: AppTitleService) {
         this.appTitle.setTitle('Nos produits');
     }
+
+    ngOnInit(): void {}
 }

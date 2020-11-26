@@ -1,14 +1,18 @@
 <!-- Mobile layout -->
 <ng-container *ngIf="media.isActive('lt-md')">
     <mat-drawer-container fxFlexFill>
-        <mat-drawer #drawer style="width: 280px" padding-top>
+        <mat-drawer #drawer style="width: 280px">
             <a
                 [routerLink]="['']"
                 (click)="drawer.close()"
-                style="text-decoration: none"
+                style="text-decoration: none; display: block"
+                padding-top
+                padding-bottom
+                padding-left-x2
+                padding-right-x2
                 ><ng-container *ngTemplateOutlet="logo"></ng-container
             ></a>
-            <mat-divider margin-top></mat-divider>
+            <mat-divider></mat-divider>
             <mat-nav-list>
                 <a
                     mat-list-item
@@ -57,8 +61,12 @@
                 <button mat-icon-button (click)="drawer.toggle()">
                     <mat-icon>menu</mat-icon>
                 </button>
-                <h3 margin-left-x3 text-accent>
-                    {{ appTitle.appTitle$ | async }}
+                <h3
+                    margin-left-x3
+                    text-accent
+                    *ngIf="appTitle.appTitle$ | async as title"
+                >
+                    {{ title }}
                 </h3>
             </mat-toolbar>
             <router-outlet></router-outlet>
@@ -129,12 +137,12 @@
         fxLayoutAlign="start center"
         style="height: 56px"
     >
-        <img
-            style="width: 48px; height: 48px"
-            [src]="homePage.identite.logo.link"
-            margin-left-x2
-            margin-right-x3
-        />
+        <app-img
+            style="width: 40px; height: 40px"
+            [src]="homePage.identite.logo"
+            mini="true"
+            margin-right-x2
+        ></app-img>
         <h2 no-margin>{{ homePage.identite.nomEtablissement }}</h2>
     </div>
 </ng-template>

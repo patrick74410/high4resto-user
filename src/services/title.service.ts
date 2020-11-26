@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { ReplaySubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
 })
 export class AppTitleService {
-    appTitle$ = new ReplaySubject<string>(1);
+    appTitle$ = new BehaviorSubject<string>('');
     constructor(private angularTitle: Title) {}
 
     setTitle(title: string) {

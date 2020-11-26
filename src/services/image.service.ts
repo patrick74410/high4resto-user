@@ -18,13 +18,15 @@ export class ImageService {
 
     getImageListOfCategorie(categorieId) {
         return this.http.get<ImageI[]>(
-            `${env.apiUrl}/image/filter/${categorieId}`
+            `${env.apiUrl}/images/filter/${categorieId}`
         );
     }
 
     getImageById(imageId) {
-        return this.http.get<ImageI>(
-            `${env.apiUrl}/image/find/${imageId}`
-        );
+        return this.http.get<ImageI>(`${env.apiUrl}/images/find/${imageId}`);
+    }
+
+    resolveImageByGridId(griId): string {
+        return `${env.apiUrl}/images/download/${griId}`;
     }
 }

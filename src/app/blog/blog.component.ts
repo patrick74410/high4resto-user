@@ -16,9 +16,13 @@ export class BlogComponent implements OnInit {
         private appTitle: AppTitleService,
         private homePageService: HomePageService,
         private route: ActivatedRoute
-    ) {}
+    ) {
+        this.initBlog();
+    }
 
-    async ngOnInit(): Promise<void> {
+    ngOnInit(): void {}
+
+    async initBlog(): Promise<void> {
         const homePage = await this.homePageService.homePage$
             .pipe(first())
             .toPromise();

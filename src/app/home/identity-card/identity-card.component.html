@@ -1,3 +1,79 @@
-<mat-card>
-    <app-map></app-map>
+<mat-card style="overflow: hidden" no-padding>
+    <!-- Squared container -->
+    <div style="padding-bottom: 100%; position: relative" margin-bottom-x2>
+        <app-map
+            style="display: block; position: absolute"
+            fxFlexFill
+        ></app-map>
+    </div>
+    <mat-card-header>
+        <mat-card-title>{{ identite.nomEtablissement }}</mat-card-title>
+        <mat-card-subtitle
+            [innerHtml]="identite.description"
+            no-margin-bottom
+        ></mat-card-subtitle>
+    </mat-card-header>
+    <mat-list no-padding>
+        <mat-list-item>
+            <mat-icon
+                matListIcon
+                svgIcon="map-marker"
+                class="text-secondary"
+            ></mat-icon>
+            <p matLine>
+                {{ fullAddress }}
+            </p>
+        </mat-list-item>
+
+        <!-- Horaires -->
+        <mat-accordion displayMode="flat">
+            <mat-expansion-panel style="border-radius: 0px; box-shadow: none">
+                <mat-expansion-panel-header
+                    no-padding-left
+                    style="height: auto"
+                >
+                    <mat-list-item>
+                        <mat-icon
+                            matListIcon
+                            svgIcon="calendar-clock"
+                            class="text-secondary"
+                        ></mat-icon>
+                        <p matLine>Voir les horaires d'ouvertures</p>
+                    </mat-list-item>
+                </mat-expansion-panel-header>
+                <mat-list>
+                    <mat-list-item
+                        *ngFor="
+                            let day of [
+                                'lundi',
+                                'mardi',
+                                'mercredi',
+                                'jeudi',
+                                'vendredi',
+                                'ferie'
+                            ]
+                        "
+                    >
+                        <span margin-right-x2>{{ day | titlecase }}</span>
+                        <span
+                            *ngFor="let openingTime of horaire[day]"
+                            margin-right
+                        >
+                            {{ openingTime.debut }} - {{ openingTime.fin }}
+                        </span>
+                    </mat-list-item>
+                </mat-list>
+            </mat-expansion-panel>
+        </mat-accordion>
+        <mat-list-item *ngFor="let contact of identite.contact">
+            <mat-icon
+                matListIcon
+                [svgIcon]="getContactIcon(contact.key)"
+                class="text-secondary"
+            ></mat-icon>
+            <p matLine>
+                {{ contact.value }}
+            </p>
+        </mat-list-item>
+    </mat-list>
 </mat-card>

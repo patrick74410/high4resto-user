@@ -7,6 +7,10 @@ import { HomePageService } from 'src/services/home.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { appInitializer } from './app.initializer';
+import { BlogModule } from './blog/blog.module';
+import { HomeModule } from './home/home.module';
+import { PhotoModule } from './photo/photo.module';
+import { ProductsModule } from './products/products.module';
 import { SharedModule } from './shared.module';
 
 @NgModule({
@@ -17,6 +21,10 @@ import { SharedModule } from './shared.module';
         BrowserAnimationsModule,
         HttpClientModule,
         SharedModule,
+        HomeModule,
+        ProductsModule,
+        BlogModule,
+        PhotoModule,
     ],
     providers: [
         {

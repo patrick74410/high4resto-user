@@ -50,3 +50,16 @@ body {
     margin: 0;
     font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
+
+.fab-button-expanded {
+    height: 48px;
+    border-radius: 48px !important;
+}
+
+.fixed-bottom {
+    position: fixed !important;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    z-index: 10;
+}

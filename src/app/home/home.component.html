@@ -1,1 +1,52 @@
-<p>home works!</p>
+<ng-container *ngIf="homePageService.homePage$ | async as homePage">
+    <div
+        fxLayout="column"
+        fxLayout.gt-sm="row"
+        fxLayoutGap="16px"
+        margin-top-x2
+        ngClass.lt-md="padding-left-x2 padding-right-x2"
+    >
+        <div fxLayout="column" fxFlex fxLayoutGap="16px">
+            <h1 class="mat-display-1" style="line-height: 48px" margin-left-x2>
+                Bienvenue sur le site de notre restaurant
+            </h1>
+            <app-caroussel [imageList]="homePage.caroussel"></app-caroussel>
+            <p class="mat-body-2" margin-left-x2>
+                Découvrez nos derniers articles
+            </p>
+            <div fxLayout="row wrap">
+                <app-article-preview
+                    fxFlex="50%"
+                    *ngFor="let article of homePage.onTop"
+                    [article]="article"
+                    [vertical]="media.isActive('lt-md')"
+                ></app-article-preview>
+            </div>
+        </div>
+        <div fxLayout="column" fxFlex.gt-sm="400px" fxLayoutGap="16px">
+            <div
+                fxLayout="column"
+                fxLayoutAlign.lt-md="center center"
+                ngClass.lt-md="fixed-bottom"
+            >
+                <button
+                    color="primary"
+                    mat-raised-button
+                    class="fab-button-expanded"
+                >
+                    <mat-icon
+                        svgIcon="basket"
+                        margin-left-x2
+                        margin-right-x2
+                    ></mat-icon>
+                    <span margin-right-x2>Commander en ligne</span>
+                </button>
+            </div>
+
+            <app-identity-card
+                [identite]="homePage.identite"
+                [horaire]="homePage.horaire"
+            ></app-identity-card>
+        </div>
+    </div>
+</ng-container>

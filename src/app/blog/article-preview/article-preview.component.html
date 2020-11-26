@@ -1,1 +1,17 @@
-<p>article-preview works!</p>
+<mat-card>
+    <div mat-card-image style="position: relative; padding-bottom: 66%">
+        <app-img
+            fxFlexFill
+            style="position: absolute"
+            [src]="article.image"
+        ></app-img>
+    </div>
+    <mat-card-header>
+        <mat-card-title>{{ article.title }}</mat-card-title>
+        <mat-card-subtitle
+            [innerHtml]="article.resume"
+            no-margin-bottom
+            style="height: 40px; overflow: hidden; text-overflow: ellipsis"
+        ></mat-card-subtitle>
+    </mat-card-header>
+</mat-card>

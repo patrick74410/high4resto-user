@@ -1,1 +1,15 @@
-<p>caroussel works!</p>
+<mat-card no-padding style="overflow: hidden">
+    <div style="width: 100%; padding-bottom: 56.25%">
+        <gallery
+            [thumb]="false"
+            [counter]="false"
+            [dots]="true"
+            [nav]="false"
+            [autoPlay]="true"
+            [items]="galleryItemList"
+            [imageSize]="'cover'"
+            fxFlexFill
+            style="position: absolute"
+        ></gallery>
+    </div>
+</mat-card>

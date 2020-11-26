@@ -1,10 +1,7 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MediaObserver } from '@angular/flex-layout';
 import { AuthService } from '@auth0/auth0-angular';
-import { Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
-import { ItemCarteI } from 'src/interfaces/ItemCarteI';
-import { ItemCategorieI } from 'src/interfaces/ItemCategorieI';
 import { HomePageService } from 'src/services/home.service';
 import { ItemService } from 'src/services/item.service';
 import { AppTitleService } from 'src/services/title.service';
@@ -13,11 +10,9 @@ import { AppTitleService } from 'src/services/title.service';
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-    title = 'high4resto-frontEnd';
-    categorieList$: Observable<ItemCategorieI[]>;
-    itemCarteList$: Observable<ItemCarteI[]>;
     navigationList: NavigationItem[] = [];
     constructor(
         public media: MediaObserver,
@@ -49,13 +44,6 @@ export class AppComponent {
                 }
             );
         });
-        /* this.categorieList$ = this.itemService.getCategorieList().pipe(
-            tap((categorieList) => {
-                this.itemCarteList$ = this.itemService.getItemCarteListOfCategorie(
-                    categorieList[0].id
-                );
-            })
-        ); */
     }
 }
 

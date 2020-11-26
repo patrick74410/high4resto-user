@@ -5,48 +5,59 @@ $sizes: (
     'x3': 3,
 );
 // Margins, paddings
-[margin] {
+[margin],
+.margin {
     margin: $value !important;
 }
 
-[padding] {
+[padding],
+.padding {
     padding: $value !important;
 }
 
 @each $size, $factor in $sizes {
-    [margin-#{$size}] {
+    [margin-#{$size}],
+    .margin-#{$size} {
         margin: $value * $factor !important;
     }
-    [padding-#{$size}] {
+    [padding-#{$size}],
+    .padding-#{$size} {
         padding: $value * $factor !important;
     }
 }
 
 @each $direction in $directions {
-    [margin-#{$direction}] {
+    [margin-#{$direction}],
+    .margin-#{$direction} {
         margin-#{$direction}: $value !important;
     }
-    [padding-#{$direction}] {
+    [padding-#{$direction}],
+    .padding-#{$direction} {
         padding-#{$direction}: $value !important;
     }
-    [no-margin-#{$direction}] {
+    [no-margin-#{$direction}],
+    .no-margin-#{$direction} {
         margin-#{$direction}: 0 !important;
     }
-    [no-padding-#{$direction}] {
+    [no-padding-#{$direction}],
+    .no-padding-#{$direction} {
         padding-#{$direction}: 0 !important;
     }
     @each $size, $factor in $sizes {
-        [margin-#{$direction}-#{$size}] {
+        [margin-#{$direction}-#{$size}],
+        .margin-#{$direction}-#{$size} {
             margin-#{$direction}: $value * $factor !important;
         }
-        [padding-#{$direction}-#{$size}] {
+        [padding-#{$direction}-#{$size}],
+        .padding-#{$direction}-#{$size} {
             padding-#{$direction}: $value * $factor !important;
         }
     }
 }
 
 // No margins and no paddings
-[no-margin] {
+[no-margin],
+.no-margin {
     margin: 0 !important;
 }
 

@@ -12,11 +12,7 @@ export class MapComponent implements OnInit {
     apiLoaded: Observable<boolean>;
     center: google.maps.LatLngLiteral = { lat: 48.864716, lng: 2.349014 };
     display: any;
-    option: google.maps.MapOptions = {
-        mapTypeId: 'hybrid',
-        fullscreenControl: true,
-        zoomControl: true,
-    };
+    option: google.maps.MapOptions = {};
     constructor(
         private homePageService: HomePageService,
         public mapService: MapService

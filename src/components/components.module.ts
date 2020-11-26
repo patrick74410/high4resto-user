@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ImgComponent } from './img/img.component';
 import { MapModule } from './map/map.module';
 
 @NgModule({
-    declarations: [],
+    declarations: [ImgComponent],
     imports: [CommonModule],
-    exports: [MapModule],
+    exports: [MapModule, ImgComponent],
 })
 export class ComponentsModule {}
