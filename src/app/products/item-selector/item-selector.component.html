@@ -1,0 +1,29 @@
+<mat-card
+    ngClass.lt-md="mat-elevation-z0"
+    ngStyle.lt-md="background:transparent"
+>
+    <mat-action-list>
+        <p mat-subheader>Ajoutez un produit à votre panier</p>
+        <mat-card
+            *ngFor="let item of itemList"
+            no-padding
+            ngClass.gt-sm="mat-elevation-z0"
+            ngClass.lt-md="margin-bottom-x2"
+        >
+            <button mat-list-item>
+                <app-img
+                    matListAvatar
+                    [src]="item.sourceImage"
+                    [mini]="true"
+                    margin-right
+                ></app-img>
+                <p matLine>
+                    <span class="mat-title">{{ item.name }}</span>
+                </p>
+                <p matLine>
+                    {{ item.description | htmlToPlainText }}
+                </p>
+            </button>
+        </mat-card>
+    </mat-action-list>
+</mat-card>

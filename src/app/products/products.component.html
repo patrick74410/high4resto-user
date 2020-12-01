@@ -1,1 +1,36 @@
-<p>products works!</p>
+<ng-container *ngIf="media.isActive('lt-md')">
+    <router-outlet></router-outlet>
+    <div
+        fxLayout="column"
+        fxLayoutAlign.lt-md="center center"
+        ngClass.lt-md="fixed-bottom"
+        padding-x2
+    >
+        <button
+            mat-button
+            color="primary"
+            mat-raised-button
+            class="fab-button-expanded"
+        >
+            <mat-icon
+                svgIcon="basket"
+                margin-left-x2
+                margin-right-x2
+            ></mat-icon>
+            <span margin-right-x2>Voir le panier</span>
+        </button>
+    </div>
+</ng-container>
+<ng-container *ngIf="media.isActive('gt-sm')">
+    <div fxLayout="row" fxLayoutGap="16px" margin-top-x2>
+        <app-category-selector
+            [categorieList]="productsService.categorieList$ | async"
+        >
+        </app-category-selector>
+        <app-item-selector
+            fxFlex="1 1 0%"
+            style="width: 0"
+            [itemList]="productsService.itemList$ | async"
+        ></app-item-selector>
+    </div>
+</ng-container>

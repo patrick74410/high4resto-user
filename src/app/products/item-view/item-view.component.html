@@ -1,0 +1,9 @@
+<mat-toolbar color="primary">
+    <a mat-icon-button [routerLink]="['..']">
+        <mat-icon svgIcon="arrow-left"></mat-icon>
+    </a>
+    <h3 margin-left-x3 text-accent>
+        {{ title }}
+    </h3> </mat-toolbar
+><app-item-selector [itemList]="productsService.itemList$ | async">
+</app-item-selector>

@@ -26,6 +26,10 @@ export const appInitializer = (
                     { name: 'keywords', content: homePage.metaTag.keywords },
                     { name: 'author', content: homePage.metaTag.author },
                     {
+                        name: 'robots',
+                        content: 'index, follow',
+                    },
+                    {
                         name: 'og:title',
                         content: homePage.metaTag.facebookTitle,
                     },

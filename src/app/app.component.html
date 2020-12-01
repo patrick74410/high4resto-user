@@ -1,7 +1,11 @@
 <!-- Mobile layout -->
 <ng-container *ngIf="media.isActive('lt-md')">
     <mat-drawer-container fxFlexFill>
-        <mat-drawer #drawer style="width: 280px">
+        <mat-drawer
+            #drawer
+            style="width: 280px"
+            [(opened)]="drawerService.opened"
+        >
             <a
                 [routerLink]="['']"
                 (click)="drawer.close()"
@@ -57,8 +61,8 @@
             </mat-nav-list>
         </mat-drawer>
         <mat-drawer-content>
-            <mat-toolbar color="primary">
-                <button mat-icon-button (click)="drawer.toggle()">
+            <mat-toolbar *ngIf="showToolbar$ | async" color="primary">
+                <button mat-icon-button (click)="drawerService.open()">
                     <mat-icon>menu</mat-icon>
                 </button>
                 <h3
@@ -76,10 +80,15 @@
 
 <!-- Desktop layout -->
 <ng-container *ngIf="media.isActive('gt-sm')">
-    <section fxFlexFill fxLayout="row" fxLayoutAlign="center start">
+    <section
+        style="min-width: 100%; min-height: 100%"
+        fxLayout="row"
+        fxLayoutAlign="center start"
+        class="background-light"
+    >
         <div fxFlex="0 1 1280px">
             <mat-toolbar
-                class="mat-elevation-z2"
+                class="mat-elevation-z2 background-surface"
                 style="border-radius: 0 0 8px 8px; height: 56px"
             >
                 <a

@@ -54,7 +54,9 @@
                             ]
                         "
                     >
-                        <span margin-right-x2>{{ day | titlecase }}</span>
+                        <span margin-right-x2 style="width: 68px">{{
+                            day | titlecase
+                        }}</span>
                         <span
                             *ngFor="let openingTime of horaire[day]"
                             margin-right

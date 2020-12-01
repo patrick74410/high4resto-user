@@ -27,6 +27,7 @@ import { RouterModule } from '@angular/router';
 import { GalleryModule } from 'ng-gallery';
 import { LightboxModule } from 'ng-gallery/lightbox';
 import { ComponentsModule } from 'src/components/components.module';
+import { PipesModule } from 'src/pipes/pipes.module';
 
 const materialModules = [
     MatCardModule,
@@ -62,6 +63,7 @@ const materialModules = [
         ComponentsModule,
         GalleryModule,
         LightboxModule,
+        PipesModule,
     ],
 })
 export class SharedModule {}

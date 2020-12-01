@@ -1,0 +1,35 @@
+<mat-card
+    ngClass.lt-md="mat-elevation-z0"
+    ngStyle.lt-md="background:transparent"
+>
+    <mat-nav-list>
+        <p mat-subheader>Sélectionnez une catégorie</p>
+        <mat-card
+            *ngFor="let categorie of categorieList"
+            no-padding
+            ngClass.gt-sm="mat-elevation-z0"
+            ngClass.lt-md="margin-bottom-x2"
+        >
+            <a
+                mat-list-item
+                [routerLink]="[categorie.id]"
+                routerLinkActive="background-primary"
+            >
+                <app-img
+                    matListAvatar
+                    [src]="categorie.iconImage"
+                    margin-right
+                ></app-img>
+                <p matLine>
+                    <span class="mat-title">{{ categorie.name }}</span>
+                </p>
+                <p matLine>{{ categorie.description }}</p>
+                <mat-icon
+                    matListIcon
+                    style="order: 1"
+                    svgIcon="chevron-right"
+                ></mat-icon>
+            </a>
+        </mat-card>
+    </mat-nav-list>
+</mat-card>

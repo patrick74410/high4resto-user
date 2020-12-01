@@ -5,6 +5,7 @@
         fxLayoutGap="16px"
         margin-top-x2
         ngClass.lt-md="padding-left-x2 padding-right-x2"
+        margin-bottom-x2
     >
         <div fxLayout="column" fxFlex fxLayoutGap="16px">
             <h1 class="mat-display-1" style="line-height: 48px" margin-left-x2>
@@ -14,16 +15,31 @@
             <p class="mat-body-2" margin-left-x2>
                 Découvrez nos derniers articles
             </p>
-            <div fxLayout="row wrap">
+            <div class="grid-container">
                 <app-article-preview
-                    fxFlex="50%"
-                    *ngFor="let article of homePage.onTop"
+                    *ngFor="let article of homePage.onTop; let index = index"
                     [article]="article"
-                    [vertical]="media.isActive('lt-md')"
+                    [vertical]="
+                        !(
+                            index % 2 === 0 &&
+                            index === homePage.onTop.length - 1
+                        ) && !media.isActive('lt-md')
+                    "
+                    [ngClass]="{
+                        span:
+                            (index % 2 === 0 &&
+                                index === homePage.onTop.length - 1) ||
+                            media.isActive('lt-md')
+                    }"
                 ></app-article-preview>
             </div>
         </div>
-        <div fxLayout="column" fxFlex.gt-sm="400px" fxLayoutGap="16px">
+        <div
+            fxLayout="column"
+            fxFlex.gt-sm="400px"
+            fxLayoutGap="16px"
+            [ngStyle.lt-md]="{ 'padding-bottom.px': 64 }"
+        >
             <div
                 fxLayout="column"
                 fxLayoutAlign.lt-md="center center"
@@ -33,6 +49,7 @@
                     color="primary"
                     mat-raised-button
                     class="fab-button-expanded"
+                    [routerLink]="['products']"
                 >
                     <mat-icon
                         svgIcon="basket"

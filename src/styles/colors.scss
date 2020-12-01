@@ -12,8 +12,8 @@
     }
     [background-primary],
     .background-primary {
-        background: mat-color($primary);
-        color: mat-color($primary, default-contrast);
+        background: mat-color($primary) !important;
+        color: mat-color($primary, default-contrast) !important;
     }
     [background-primary-light],
     .background-primary-light {

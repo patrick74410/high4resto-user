@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ArticleI } from 'src/interfaces/ArticleI';
+import { ArticleService } from 'src/services/article.service';
 
 @Component({
     selector: 'app-article-preview',
@@ -9,7 +10,7 @@ import { ArticleI } from 'src/interfaces/ArticleI';
 export class ArticlePreviewComponent implements OnInit {
     @Input() article: ArticleI;
     @Input() vertical = false;
-    constructor() {}
+    constructor(public articleService: ArticleService) {}
 
     ngOnInit(): void {}
 }

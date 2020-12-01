@@ -1,0 +1,14 @@
+mat-card-header {
+    position: relative;
+    &:after {
+        background: linear-gradient(to bottom, transparent, white);
+        position: absolute;
+        height: 30px;
+        bottom: 0;
+        width: 100%;
+        content: '';
+    }
+}
+:host:hover {
+    cursor: pointer;
+}
