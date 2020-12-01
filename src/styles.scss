@@ -63,3 +63,22 @@ body {
     width: 100%;
     z-index: 10;
 }
+
+.dialog-fullscreen {
+    mat-dialog-container {
+        border-radius: 0;
+        padding: 0;
+        mat-dialog-content {
+            max-height: none;
+            padding: 0;
+            margin: 0;
+        }
+        mat-dialog-actions {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.mat-list-single-selected-option {
+    @extend .background-primary;
+}

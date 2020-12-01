@@ -1,0 +1,80 @@
+<button
+    *ngIf="media.isActive('lt-md')"
+    mat-mini-fab
+    color="primary"
+    style="position: absolute; left: 8px; top: 8px; z-index: 2"
+    mat-dialog-close
+>
+    <mat-icon svgIcon="close"></mat-icon>
+</button>
+<div style="position: relative; padding-bottom: 66%">
+    <app-img
+        fxFlexFill
+        style="position: absolute"
+        [src]="item.sourceImage"
+    ></app-img>
+</div>
+
+<div padding-x2>
+    <h2 no-margin-bottom>{{ item.name }}</h2>
+    <p no-margin-bottom>{{ item.description | htmlToPlainText }}</p>
+    <ng-container *ngIf="item.allergenes.length">
+        <button
+            mat-button
+            style="
+                height: 24px;
+                font-size: 12px;
+                line-height: 24px;
+                padding: 0 8px;
+            "
+            class="background text-secondary"
+            [matMenuTriggerFor]="menu"
+        >
+            <mat-icon
+                svgIcon="information"
+                style="height: 18px; width: 18px; margin-right: 4px"
+            ></mat-icon>
+            <span>Allergènes</span>
+        </button>
+        <mat-menu #menu="matMenu">
+            <a mat-menu-item *ngFor="let allergene of item.allergenes">
+                <span>{{ allergene.name }}</span>
+            </a>
+        </mat-menu>
+    </ng-container>
+</div>
+
+<mat-card
+    *ngFor="let option of item.options"
+    no-padding
+    margin-x2
+    class="mat-elevation-z0 background"
+    style="overflow: hidden"
+>
+    <mat-toolbar class="text-secondary background">
+        {{ option.label }}
+    </mat-toolbar>
+    <mat-divider></mat-divider>
+    <mat-selection-list [multiple]="!option.unique">
+        <mat-list-option *ngFor="let choice of option.options" color="primary">
+            {{ choice.label }}
+        </mat-list-option>
+    </mat-selection-list>
+</mat-card>
+
+<div fxLayout="row" padding-left-x3 padding-right-x3 class="mat-subheading-2">
+    <span fxFlex> Prix unitaire </span>
+    <span style="font-weight: 500"> {{ item.price }}€ </span>
+</div>
+
+<div fxLayout="column" fxLayoutAlign="center center" padding-x2>
+    <button
+        mat-button
+        color="primary"
+        mat-raised-button
+        class="fab-button-expanded"
+    >
+        <mat-icon svgIcon="plus" margin-left-x2 margin-right-x2></mat-icon>
+        <span margin-right-x2>Ajouter au panier</span>
+    </button>
+</div>
