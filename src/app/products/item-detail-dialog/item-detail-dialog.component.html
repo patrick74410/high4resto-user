@@ -1,13 +1,14 @@
-<button
-    *ngIf="media.isActive('lt-md')"
-    mat-mini-fab
-    color="primary"
-    style="position: absolute; left: 8px; top: 8px; z-index: 2"
-    mat-dialog-close
->
-    <mat-icon svgIcon="close"></mat-icon>
-</button>
 <div style="position: relative; padding-bottom: 66%">
+    <button
+        mat-mini-fab
+        color="primary"
+        style="position: absolute; top: 8px; z-index: 2"
+        ngStyle.lt-md="left:8px"
+        ngStyle.gt-sm="right:8px"
+        mat-dialog-close
+    >
+        <mat-icon svgIcon="close"></mat-icon>
+    </button>
     <app-img
         fxFlexFill
         style="position: absolute"

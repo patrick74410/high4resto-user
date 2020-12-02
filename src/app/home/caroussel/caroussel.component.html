@@ -8,8 +8,20 @@
             [autoPlay]="true"
             [items]="galleryItemList"
             [imageSize]="'cover'"
+            [itemTemplate]="itemTemplate"
             fxFlexFill
             style="position: absolute"
         ></gallery>
     </div>
 </mat-card>
+<ng-template
+    #itemTemplate
+    let-index="index"
+    let-type="type"
+    let-data="data"
+    let-currIndex="currIndex"
+>
+    <div class="text-container">
+        <div class="text" [innerHTML]="data?.description"></div>
+    </div>
+</ng-template>

@@ -24,6 +24,7 @@
 <ng-container *ngIf="media.isActive('gt-sm')">
     <div fxLayout="row" fxLayoutGap="16px" margin-top-x2>
         <app-category-selector
+            fxFlex="280px"
             [categorieList]="productsService.categorieList$ | async"
         >
         </app-category-selector>

@@ -17,7 +17,8 @@ export class CarousselComponent implements OnInit {
                 new ImageItem({
                     src: this.resolveGridId(image.gridId),
                     thumb: this.resolveGridId(image.miniGridId),
-                })
+                    description: image.description,
+                } as any)
             );
         });
         this.galleryItemList = galleryItemList;

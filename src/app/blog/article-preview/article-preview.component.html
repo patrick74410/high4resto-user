@@ -11,19 +11,23 @@
         ></app-img>
     </div>
     <div fxLayout="row" fxLayoutGap="16px;">
-        <div fxLayout="column" fxFlex ngClass.gt-sm="padding-x2">
-            <div
-                fxFlex="1 0 68px"
-                fxFlex.gt-sm="1 0 88px"
-                style="overflow: hidden"
-            >
+        <div
+            fxLayout="column"
+            fxFlex
+            ngClass.gt-sm="padding-x2"
+            style="overflow: hidden"
+        >
+            <div>
                 <mat-card-title margin-bottom-x2>{{
                     article.title
                 }}</mat-card-title>
                 <mat-card-subtitle
-                    [innerHtml]="article.resume"
+                    ngClass.lt-md="clamp-2"
+                    ngClass.gt-sm="clamp-3"
                     no-margin-bottom
-                ></mat-card-subtitle>
+                >
+                    {{ article.resume }}</mat-card-subtitle
+                >
             </div>
             <span class="mat-caption text-secondary" margin-top>
                 {{ article.author }} -

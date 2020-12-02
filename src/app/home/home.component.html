@@ -31,6 +31,12 @@
                                 index === homePage.onTop.length - 1) ||
                             media.isActive('lt-md')
                     }"
+                    [routerLink]="[
+                        'blog',
+                        article.categorie.id,
+                        'article',
+                        article.id
+                    ]"
                 ></app-article-preview>
             </div>
         </div>

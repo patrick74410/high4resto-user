@@ -1,8 +1,5 @@
 <ng-container *ngIf="mapService.apiLoaded$ | async">
-    <google-map
-        height="100%"
-        width="100%"
-        [center]="center"
-        [options]="option"
-    ></google-map>
+    <google-map height="100%" width="100%" [center]="center" [options]="option">
+        <map-marker [position]="center"></map-marker>
+    </google-map>
 </ng-container>

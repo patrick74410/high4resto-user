@@ -2,6 +2,7 @@
 @mixin configure-colors($theme) {
     $primary: map-get($theme, primary);
     $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
     $background: map-get($theme, background);
     $foreground: map-get($theme, foreground);
 
@@ -56,5 +57,8 @@
 
     .text-disabled {
         color: mat-color($foreground, disabled-text);
+    }
+    .text-warn {
+        color: mat-color($warn);
     }
 }

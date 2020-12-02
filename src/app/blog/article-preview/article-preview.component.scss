@@ -12,3 +12,18 @@ mat-card-header {
 :host:hover {
     cursor: pointer;
 }
+.clamp {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.clamp-2 {
+    @extend .clamp;
+    height: 40px;
+    -webkit-line-clamp: 2;
+}
+.clamp-3 {
+    @extend .clamp;
+    height: 60px;
+    -webkit-line-clamp: 3;
+}

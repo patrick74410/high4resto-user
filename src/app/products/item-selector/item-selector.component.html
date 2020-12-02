@@ -16,12 +16,16 @@
                     [src]="item.sourceImage"
                     [mini]="true"
                     margin-right
+                    style="width: 56px; height: 56px"
                 ></app-img>
                 <p matLine>
                     <span class="mat-title">{{ item.name }}</span>
                 </p>
                 <p matLine>
-                    {{ item.description | htmlToPlainText }}
+                    <span>{{ item.remarque }}</span>
+                    <span *ngIf="item.stock < 5" class="text-warn"
+                        >Il n'en reste plus que {{ item.stock }}</span
+                    >
                 </p>
             </button>
         </mat-card>
