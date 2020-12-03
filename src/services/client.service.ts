@@ -4,6 +4,7 @@ import { AuthService } from '@auth0/auth0-angular';
 import { ReplaySubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { ClientI } from 'src/interfaces/Client';
+import { ItemCarteI } from 'src/interfaces/ItemCarteI';
 import { environment as env } from '../environments/environment';
 
 @Injectable({
@@ -15,7 +16,6 @@ export class ClientService {
     clientId: string;
     constructor(private http: HttpClient, private authService: AuthService) {
         this.authService.user$.subscribe((user) => {
-            console.log(user);
             this.securityKey =
                 user['https://high4resto.high4technology.fr/generateKey'];
             this.clientId =
@@ -34,13 +34,28 @@ export class ClientService {
 
     updateClient(client) {
         return this.http
-            .put(`${env.apiUrl}/client/update/${this.securityKey}`, client, {
-                responseType: 'text',
-            })
+            .put<ClientI>(
+                `${env.apiUrl}/client/update/${this.securityKey}`,
+                client
+            )
             .pipe(
-                tap(() => {
-                    this.client$.next(client);
+                tap((clientUpdated) => {
+                    this.client$.next(clientUpdated);
                 })
             );
+    }
+
+    calculateItemPrice(item: ItemCarteI): number {
+        return (
+            item.price +
+            item.options.reduce((sum, option) => {
+                return (
+                    sum +
+                    option.options.reduce((sum2, choice) => {
+                        return sum2 + (choice.selected ? choice.price : 0);
+                    }, sum)
+                );
+            }, 0)
+        );
     }
 }

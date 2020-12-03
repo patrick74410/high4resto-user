@@ -49,6 +49,7 @@
             </mat-toolbar>
             <app-basket-viewer
                 [panier]="(clientService.client$ | async)?.currentPanier"
+                [price]="(clientService.client$ | async)?.price"
                 (itemClicked)="
                     productsService.openItemDetail(
                         $event.item,

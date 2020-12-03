@@ -1,9 +1,14 @@
-<p>photo works!</p>
-<div fxLayout="row wrap" fxLayoutGap="16px">
+<div
+    fxLayout="column"
+    fxLayout.gt-sm="row wrap"
+    fxLayoutAlign.gt-sm="center start"
+    padding
+>
     <app-album-viewer
-        fxFlex="0 1 408px"
+        fxFlex.gt-sm="400px"
         *ngFor="let album of albumList$ | async"
         [album]="album"
-        margin-bottom-x2
+        margin
+        [routerLink]="[album.id]"
     ></app-album-viewer>
 </div>

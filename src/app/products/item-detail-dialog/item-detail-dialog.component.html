@@ -69,14 +69,17 @@
             [selected]="choice.selected"
             [value]="index"
         >
-            {{ choice.label }}
+            <div matLine>
+                <span fxFlex>{{ choice.label }}</span>
+                <span *ngIf="choice.price">+{{ choice.price }}€</span>
+            </div>
         </mat-list-option>
     </mat-selection-list>
 </mat-card>
 
 <div fxLayout="row" padding-left-x3 padding-right-x3 class="mat-subheading-2">
     <span fxFlex> Prix unitaire </span>
-    <span style="font-weight: 500"> {{ item.price }}€ </span>
+    <span style="font-weight: 500"> {{ price }}€ </span>
 </div>
 
 <div

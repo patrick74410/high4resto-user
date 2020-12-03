@@ -11,4 +11,5 @@ export interface ClientI {
     city: string;
     sendInfo: boolean;
     currentPanier: ItemCarteI[];
+    price: number;
 }

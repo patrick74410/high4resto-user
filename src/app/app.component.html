@@ -124,7 +124,6 @@
                         >Connexion</a
                     >
                     <ng-container *ngSwitchCase="true">
-                        {{ (auth.user$ | async)?.email }}
                         <a mat-button (click)="auth.logout()">Déconnexion</a>
                     </ng-container>
                 </ng-container>

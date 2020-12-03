@@ -58,7 +58,6 @@ export class ProductsComponent implements OnInit {
             .subscribe((categorieList) => {
                 if (this.media.isActive('gt-md')) {
                     if (!this.route.firstChild.snapshot.params.category) {
-                        console.log('redirect');
                         return this.router.navigate([
                             'products',
                             categorieList[0].id,

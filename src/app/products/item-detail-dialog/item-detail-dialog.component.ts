@@ -20,6 +20,7 @@ import { ClientService } from 'src/services/client.service';
 export class ItemDetailDialogComponent implements OnInit {
     item: ItemCarteI = JSON.parse(JSON.stringify(this.data.item));
     loading = false;
+    price = 0;
     constructor(
         @Inject(MAT_DIALOG_DATA)
         public data: {
@@ -34,7 +35,12 @@ export class ItemDetailDialogComponent implements OnInit {
         private clientService: ClientService
     ) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.updateItemPrice();
+    }
+    updateItemPrice(): void {
+        this.price = this.clientService.calculateItemPrice(this.item);
+    }
 
     optionsFilled(): boolean {
         return this.item.options.every((option) => {
@@ -54,6 +60,7 @@ export class ItemDetailDialogComponent implements OnInit {
         selection.forEach((listOption) => {
             option.options[listOption.value].selected = true;
         });
+        this.updateItemPrice();
     }
 
     async addItem(): Promise<void> {

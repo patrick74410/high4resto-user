@@ -9,7 +9,6 @@ export class MapService {
     apiLoaded$ = new BehaviorSubject(false);
     constructor(private http: HttpClient) {}
     loadApi(apiKey): void {
-        console.log('loadApi');
         this.http
             .jsonp(
                 `https://maps.googleapis.com/maps/api/js?key=${apiKey}`,

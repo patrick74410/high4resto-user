@@ -4,6 +4,7 @@ import { ArticleComponent } from './blog/article/article.component';
 import { ArticleResolver } from './blog/article/article.resolver';
 import { BlogComponent } from './blog/blog.component';
 import { HomeComponent } from './home/home.component';
+import { PhotoListComponent } from './photo/photo-list/photo-list.component';
 import { PhotoComponent } from './photo/photo.component';
 import { CategoryViewComponent } from './products/category-view/category-view.component';
 import { ItemViewComponent } from './products/item-view/item-view.component';
@@ -48,6 +49,13 @@ const routes: Routes = [
     {
         path: 'photos',
         component: PhotoComponent,
+    },
+    {
+        path: 'photos/:albumId',
+        component: PhotoListComponent,
+        data: {
+            overrideToolbar: true,
+        },
     },
 ];
 

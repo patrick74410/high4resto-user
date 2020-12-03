@@ -1,0 +1,21 @@
+<mat-toolbar ngClass.lt-md="background-primary" ngClass.gt-sm="margin-top">
+    <button mat-button [routerLink]="['..']">
+        <mat-icon svgIcon="arrow-left" margin-right-x2></mat-icon>
+        <span>Retour à la liste</span>
+    </button>
+</mat-toolbar>
+<div fxLayout="row wrap" fxLayoutAlign="center start" padding>
+    <div
+        *ngFor="let item of items; let i = index"
+        [gallery]="galleryId"
+        [lightbox]="i"
+        matRipple
+        margin
+    >
+        <img
+            ngStyle.gt-md="width:300px; height:300px"
+            style="width: 150px; height: 150px; object-fit: cover"
+            [src]="media.isActive('lt-md') ? item.data.thumb : item.data.src"
+        />
+    </div>
+</div>

@@ -14,6 +14,8 @@ export class BasketViewerComponent implements OnInit {
 
         this._panier = panier;
     }
+    @Input() price: number;
+
     @Output() itemClicked = new EventEmitter();
     @Output() payoutClicked = new EventEmitter();
     _panier: ItemCarteI[] = [];

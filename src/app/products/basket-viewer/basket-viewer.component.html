@@ -8,12 +8,12 @@
         (click)="itemClicked.emit({ item: item, index: index })"
     >
         <span fxFlex margin-right>{{ item.name }}</span>
-        <span>{{ item.price }} €</span>
+        <span>{{ clientService.calculateItemPrice(item) }} €</span>
     </button>
 </mat-action-list>
 <p margin-left-x2 margin-right-x2>
     <span class="mat-body-2" fxFlex> Prix total </span>
-    <span class="mat-body-2">{{ fullPrice }} €</span>
+    <span class="mat-body-2">{{ price || 0 }} €</span>
 </p>
 <div fxLayout="column" fxLayoutAlign="center center" padding-x2>
     <button

@@ -27,7 +27,6 @@ export class ItemViewComponent implements OnInit {
         const categorie = categorieList.find(
             (categorie) => categorie.id === this.route.snapshot.params.category
         );
-        console.log(categorie);
         return categorie.name;
     }
 }

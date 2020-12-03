@@ -12,7 +12,7 @@ export class ImageService {
 
     getCategorieList() {
         return this.http.get<ImageCategorieI[]>(
-            `${env.apiUrl}/imageCategorie/find/`
+            `${env.apiUrl}/imageCategorie/findAlbum/`
         );
     }
 
