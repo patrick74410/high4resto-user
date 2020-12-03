@@ -4,6 +4,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
 import { Observable } from 'rxjs';
 import { filter, first, map } from 'rxjs/operators';
+import { ClientService } from 'src/services/client.service';
 import { HomePageService } from 'src/services/home.service';
 import { ItemService } from 'src/services/item.service';
 import { AppTitleService } from 'src/services/title.service';
@@ -26,7 +27,8 @@ export class AppComponent {
         public appTitle: AppTitleService,
         public router: Router,
         private route: ActivatedRoute,
-        public drawerService: DrawerService
+        public drawerService: DrawerService,
+        private clientService: ClientService
     ) {}
 
     ngOnInit() {
@@ -61,6 +63,27 @@ export class AppComponent {
                     : true;
             })
         );
+
+        this.auth.isAuthenticated$
+            .pipe(filter((auth) => auth))
+            .subscribe(() => {
+                setTimeout((params) => {
+                    const redirectRoute = JSON.parse(
+                        sessionStorage.getItem('redirectRoute')
+                    );
+
+                    if (redirectRoute) {
+                        this.router.navigate([
+                            'products',
+                            redirectRoute.category,
+                        ]);
+                    }
+                }, 100);
+            });
+    }
+
+    authenticate() {
+        this.auth.loginWithRedirect();
     }
 }
 

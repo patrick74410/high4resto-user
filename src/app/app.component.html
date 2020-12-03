@@ -36,7 +36,7 @@
                     <a
                         mat-list-item
                         *ngSwitchCase="false"
-                        (click)="auth.loginWithRedirect()"
+                        (click)="authenticate()"
                     >
                         <mat-icon
                             matListIcon
@@ -120,10 +120,7 @@
 
                 <span fxFlex></span>
                 <ng-container [ngSwitch]="auth.isAuthenticated$ | async">
-                    <a
-                        mat-button
-                        *ngSwitchCase="false"
-                        (click)="auth.loginWithRedirect()"
+                    <a mat-button *ngSwitchCase="false" (click)="authenticate()"
                         >Connexion</a
                     >
                     <ng-container *ngSwitchCase="true">

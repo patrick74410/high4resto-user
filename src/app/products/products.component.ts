@@ -1,7 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MediaObserver } from '@angular/flex-layout';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, first, map } from 'rxjs/operators';
+import { ClientService } from 'src/services/client.service';
 import { ItemService } from 'src/services/item.service';
 import { AppTitleService } from 'src/services/title.service';
 import { ProductsService } from './products.service';
@@ -23,15 +25,30 @@ export class ProductsComponent implements OnInit {
         public media: MediaObserver,
         private route: ActivatedRoute,
         private router: Router,
-        public productsService: ProductsService
+        public productsService: ProductsService,
+        public clientService: ClientService,
+        private bottomSheet: MatBottomSheet
     ) {
         this.appTitle.setTitle('Nos produits');
         this.router.events
             .pipe(filter((event) => event instanceof NavigationEnd))
             .subscribe((res) => {
-                this.productsService.initItemList(
-                    this.route.snapshot.firstChild.params.category
-                );
+                this.productsService
+                    .initItemList(
+                        this.route.snapshot.firstChild.params.category
+                    )
+                    .then((itemList) => {
+                        const redirectRoute = JSON.parse(
+                            sessionStorage.getItem('redirectRoute')
+                        );
+                        if (redirectRoute) {
+                            const item = itemList.find(
+                                (item) => item.id === redirectRoute.item
+                            );
+                            sessionStorage.removeItem('redirectRoute');
+                            this.productsService.openItemDetail(item, 'add');
+                        }
+                    });
             });
     }
 
@@ -40,7 +57,13 @@ export class ProductsComponent implements OnInit {
             .pipe(first())
             .subscribe((categorieList) => {
                 if (this.media.isActive('gt-md')) {
-                    this.router.navigate(['products', categorieList[0].id]);
+                    if (!this.route.firstChild.snapshot.params.category) {
+                        console.log('redirect');
+                        return this.router.navigate([
+                            'products',
+                            categorieList[0].id,
+                        ]);
+                    }
                 }
             });
     }

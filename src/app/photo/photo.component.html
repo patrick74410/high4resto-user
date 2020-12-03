@@ -1,1 +1,9 @@
 <p>photo works!</p>
+<div fxLayout="row wrap" fxLayoutGap="16px">
+    <app-album-viewer
+        fxFlex="0 1 408px"
+        *ngFor="let album of albumList$ | async"
+        [album]="album"
+        margin-bottom-x2
+    ></app-album-viewer>
+</div>

@@ -14,6 +14,7 @@ export const appInitializer = (
         iconRegistry.addSvgIconSet(
             domSanitizer.bypassSecurityTrustResourceUrl('./assets/mdi.svg')
         );
+
         return homePageService.homePage$
             .pipe(first())
             .toPromise()

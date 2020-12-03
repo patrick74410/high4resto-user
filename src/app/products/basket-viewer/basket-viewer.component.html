@@ -1,0 +1,33 @@
+<mat-action-list>
+    <p mat-subheader *ngIf="!_panier.length" style="height: auto">
+        Le panier est vide
+    </p>
+    <button
+        mat-list-item
+        *ngFor="let item of _panier; let index = index"
+        (click)="itemClicked.emit({ item: item, index: index })"
+    >
+        <span fxFlex margin-right>{{ item.name }}</span>
+        <span>{{ item.price }} €</span>
+    </button>
+</mat-action-list>
+<p margin-left-x2 margin-right-x2>
+    <span class="mat-body-2" fxFlex> Prix total </span>
+    <span class="mat-body-2">{{ fullPrice }} €</span>
+</p>
+<div fxLayout="column" fxLayoutAlign="center center" padding-x2>
+    <button
+        mat-button
+        color="primary"
+        mat-raised-button
+        class="fab-button-expanded"
+        [disabled]="!_panier.length"
+    >
+        <mat-icon
+            svgIcon="credit-card"
+            margin-left-x2
+            margin-right-x2
+        ></mat-icon>
+        <span margin-right-x2>Régler la commande</span>
+    </button>
+</div>

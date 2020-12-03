@@ -10,13 +10,18 @@
             ngClass.gt-sm="mat-elevation-z0"
             ngClass.lt-md="margin-bottom-x2"
         >
-            <button mat-list-item (click)="openItemDetail(item)">
+            <button
+                mat-list-item
+                style="height: 112px"
+                (click)="productService.openItemDetail(item, 'add')"
+                [disabled]="item.stock.length === 0"
+            >
                 <app-img
                     matListAvatar
                     [src]="item.sourceImage"
                     [mini]="true"
                     margin-right
-                    style="width: 56px; height: 56px"
+                    style="width: 96px; height: 96px"
                 ></app-img>
                 <p matLine>
                     <span class="mat-title">{{ item.name }}</span>
