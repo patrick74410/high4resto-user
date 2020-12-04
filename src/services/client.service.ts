@@ -53,7 +53,7 @@ export class ClientService {
                     sum +
                     option.options.reduce((sum2, choice) => {
                         return sum2 + (choice.selected ? choice.price : 0);
-                    }, sum)
+                    }, 0)
                 );
             }, 0)
         );
