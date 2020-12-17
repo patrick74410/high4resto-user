@@ -1,3 +1,4 @@
+import { CommandeI } from './CommandeI';
 import { ItemCarteI } from './ItemCarteI';
 
 export interface ClientI {
@@ -12,4 +13,5 @@ export interface ClientI {
     sendInfo: boolean;
     currentPanier: ItemCarteI[];
     price: number;
+    commande:CommandeI;
 }

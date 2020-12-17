@@ -10,6 +10,7 @@ import { ItemDetailDialogComponent } from './item-detail-dialog/item-detail-dial
 import { ItemSelectorComponent } from './item-selector/item-selector.component';
 import { ItemViewComponent } from './item-view/item-view.component';
 import { ProductsComponent } from './products.component';
+import { CommandComponent } from './command/command.component';
 const routes: Routes = [
     {
         path: '',
@@ -26,6 +27,7 @@ const routes: Routes = [
         ItemDetailDialogComponent,
         BasketViewerComponent,
         BasketSheetComponent,
+        CommandComponent,
     ],
     imports: [CommonModule, RouterModule.forChild(routes), SharedModule],
 })

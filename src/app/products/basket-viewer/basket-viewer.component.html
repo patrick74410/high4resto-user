@@ -17,6 +17,7 @@
 </p>
 <div fxLayout="column" fxLayoutAlign="center center" padding-x2>
     <button
+        (click)="payoutClicked.emit(clientService.getClient())"
         mat-button
         color="primary"
         mat-raised-button

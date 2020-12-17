@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
-import { ReplaySubject } from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { ClientI } from 'src/interfaces/Client';
+import { CommandeI } from 'src/interfaces/CommandeI';
 import { ItemCarteI } from 'src/interfaces/ItemCarteI';
 import { environment as env } from '../environments/environment';
 
@@ -58,4 +59,10 @@ export class ClientService {
             }, 0)
         );
     }
+
+    generateCommande():Observable<ClientI>
+    {
+        return this.http.get<ClientI>( `${env.apiUrl}/client/generateCommande/${this.clientId}/${this.securityKey}`)
+    }
+
 }

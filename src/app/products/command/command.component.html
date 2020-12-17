@@ -1,0 +1,64 @@
+<mat-horizontal-stepper linear="true" linear (selectionChange)="selectionChange($event)">
+    <mat-step [stepControl]="coordinate">
+        <form [formGroup]="coordinate">
+            <ng-template matStepLabel>Vos coordonnées</ng-template>
+            <mat-form-field>
+                <mat-label>Nom</mat-label>
+                <input matInput formControlName="name" required>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Prénom</mat-label>
+                <input matInput  formControlName="lastName" required>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Addresse</mat-label>
+                <input matInput formControlName="adresseL1">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Complément d'addresse</mat-label>
+                <input matInput formControlName="adresseL2">
+            </mat-form-field>
+            <mat-form-field style="width:35%">
+                <mat-label>Code postal</mat-label>
+                <input matInput formControlName="zip">
+            </mat-form-field>
+
+            <mat-form-field style="width:65%">
+                <mat-label>Ville</mat-label>
+                <input matInput formControlName="city">
+            </mat-form-field>
+            <div>
+                <button mat-button matStepperNext>Suivant</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="deleveryMode">
+        <form [formGroup]="deleveryMode">
+            <ng-template matStepLabel>Choix du mode de livraison</ng-template>
+            <mat-selection-list multiple="false" formControlName="mode" required>
+                <mat-list-option value="Click&Collect" selected="true">
+                    <div matLine>
+                        <span fxFlex>Click&Collect</span>
+                    </div>
+                </mat-list-option>
+                <mat-list-option value="ToDelivery">
+                    <div matLine>
+                        <span fxFlex>Livraison</span>
+                    </div>
+                </mat-list-option>
+            </mat-selection-list>
+            <div>
+                <button mat-button matStepperNext>Suivant</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="validate">
+        <form [formGroup]="validate">
+            <ng-template matStepLabel>Validation de la commande</ng-template>
+            <mat-checkbox formControlName="validate">Je valide la commande</mat-checkbox>
+            <div>
+                <button mat-button matStepperNext>Suivant</button>
+            </div>
+        </form>
+    </mat-step>
+</mat-horizontal-stepper>

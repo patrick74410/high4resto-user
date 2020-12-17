@@ -3,11 +3,13 @@ import { MediaObserver } from '@angular/flex-layout';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ReplaySubject } from 'rxjs';
+import { ClientI } from 'src/interfaces/Client';
 import { ItemCarteI } from 'src/interfaces/ItemCarteI';
 import { ItemCategorieI } from 'src/interfaces/ItemCategorieI';
 import { ClientService } from 'src/services/client.service';
 import { ItemService } from 'src/services/item.service';
 import { BasketSheetComponent } from './basket-sheet/basket-sheet.component';
+import { CommandComponent } from './command/command.component';
 import { ItemDetailDialogComponent } from './item-detail-dialog/item-detail-dialog.component';
 
 @Injectable()
@@ -15,6 +17,8 @@ export class ProductsService {
     itemList$ = new ReplaySubject<ItemCarteI[]>(1);
     categorieList$ = new ReplaySubject<ItemCategorieI[]>(1);
     basketPrice = 0;
+    client:ClientI;
+
     constructor(
         private itemService: ItemService,
         private clientService: ClientService,
@@ -24,6 +28,7 @@ export class ProductsService {
     ) {
         this.initCategories();
         this.clientService.client$.subscribe((client) => {
+            this.client=client;
             this.basketPrice = client.currentPanier.reduce(
                 (sum, itemB) => sum + itemB.price,
                 0
@@ -66,6 +71,25 @@ export class ProductsService {
             config.maxHeight = '90vh';
         }
         this.dialog.open(ItemDetailDialogComponent, config);
+    }
+
+    openCommand(client:ClientI):void {
+        const config = new MatDialogConfig();
+        config.data={client}
+        if (this.media.isActive('lt-md')) {
+            config.minWidth = '100%';
+            config.minHeight = '100%';
+            config.height = '100%';
+            config.width = '100%';
+            config.panelClass = 'dialog-fullscreen';
+            config.closeOnNavigation = false;
+        } else {
+            config.width = '640px';
+            config.maxHeight = '90vh';
+        }
+        // Transformer le panier en commande
+        // puis affichage
+        this.dialog.open(CommandComponent, config);
     }
 
     openBasketSheet(): void {

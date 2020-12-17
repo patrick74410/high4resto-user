@@ -1,10 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MediaObserver } from '@angular/flex-layout';
-import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, first, map } from 'rxjs/operators';
 import { ClientService } from 'src/services/client.service';
-import { ItemService } from 'src/services/item.service';
 import { AppTitleService } from 'src/services/title.service';
 import { ProductsService } from './products.service';
 
@@ -21,13 +19,11 @@ export class ProductsComponent implements OnInit {
     );
     constructor(
         private appTitle: AppTitleService,
-        private itemService: ItemService,
         public media: MediaObserver,
         private route: ActivatedRoute,
         private router: Router,
         public productsService: ProductsService,
         public clientService: ClientService,
-        private bottomSheet: MatBottomSheet
     ) {
         this.appTitle.setTitle('Nos produits');
         this.router.events
