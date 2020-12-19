@@ -8,7 +8,7 @@ import { ImageCategorieI } from 'src/interfaces/ImageCategorie';
 })
 export class AlbumViewerComponent implements OnInit {
     @Input() album: ImageCategorieI;
-    constructor() {}
+    constructor() { }
 
-    ngOnInit(): void {}
+    ngOnInit(): void { }
 }

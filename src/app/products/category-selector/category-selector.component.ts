@@ -16,7 +16,7 @@ import { ItemService } from 'src/services/item.service';
 export class CategorySelectorComponent implements OnInit {
     @Input() categorieList: ItemCategorieI[];
 
-    constructor(private itemService: ItemService) {}
+    constructor(private itemService: ItemService) { }
 
-    ngOnInit(): void {}
+    ngOnInit(): void { }
 }

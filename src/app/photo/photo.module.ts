@@ -9,4 +9,4 @@ import { PhotoListComponent } from './photo-list/photo-list.component';
     declarations: [PhotoComponent, AlbumViewerComponent, PhotoListComponent],
     imports: [CommonModule, SharedModule],
 })
-export class PhotoModule {}
+export class PhotoModule { }

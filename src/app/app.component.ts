@@ -1,12 +1,13 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { ChangeDetectionStrategy, Component, Inject, PLATFORM_ID } from '@angular/core';
 import { MediaObserver } from '@angular/flex-layout';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { filter, first, map } from 'rxjs/operators';
-import { ClientService } from 'src/services/client.service';
 import { HomePageService } from 'src/services/home.service';
 import { ItemService } from 'src/services/item.service';
+import { LocalstorageService } from 'src/services/localStorage.service';
 import { AppTitleService } from 'src/services/title.service';
 import { DrawerService } from '../services/drawer.service';
 
@@ -19,7 +20,10 @@ import { DrawerService } from '../services/drawer.service';
 export class AppComponent {
     navigationList: NavigationItem[] = [];
     showToolbar$: Observable<boolean>;
+    connected: string;
+    static isBrowser = new BehaviorSubject<boolean>(null);
     constructor(
+        @Inject(PLATFORM_ID) private platformId: any,
         public media: MediaObserver,
         public homePageService: HomePageService,
         public auth: AuthService,
@@ -28,10 +32,15 @@ export class AppComponent {
         public router: Router,
         private route: ActivatedRoute,
         public drawerService: DrawerService,
-        private clientService: ClientService
-    ) {}
+        private storage: LocalstorageService,
+        private authService: AuthService
+    ) {
+        AppComponent.isBrowser.next(isPlatformBrowser(platformId));
+    }
 
     ngOnInit() {
+        this.connected = this.storage.getItem("connected");
+        console.log(this.connected);
         this.homePageService.homePage$.pipe(first()).subscribe((homePage) => {
             this.navigationList.push(
                 {
@@ -68,6 +77,13 @@ export class AppComponent {
             .pipe(filter((auth) => auth))
             .subscribe(() => {
                 setTimeout((params) => {
+                    this.authService.user$.subscribe((user) => {
+                        this.storage.setItem("key", user['https://high4resto.high4technology.fr/generateKey']);
+                        this.storage.setItem("clientId", user['https://high4resto.high4technology.fr/clientId']);
+                        this.storage.setItem("connected", "true");
+                        this.connected = "true";
+                    });
+
                     const redirectRoute = JSON.parse(
                         sessionStorage.getItem('redirectRoute')
                     );
@@ -85,6 +101,14 @@ export class AppComponent {
     authenticate() {
         this.auth.loginWithRedirect();
     }
+
+    logout() {
+        this.auth.logout();
+        this.storage.removeItem("clientId");
+        this.storage.removeItem("key");
+        this.storage.removeItem("connected");
+    }
+
 }
 
 interface NavigationItem {

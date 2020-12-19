@@ -10,4 +10,4 @@ import { BlogComponent } from './blog.component';
     imports: [CommonModule, SharedModule],
     exports: [ArticlePreviewComponent],
 })
-export class BlogModule {}
+export class BlogModule { }

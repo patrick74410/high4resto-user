@@ -1,26 +1,11 @@
 <mat-card no-padding style="overflow: hidden">
     <div style="width: 100%; padding-bottom: 56.25%">
-        <gallery
-            [thumb]="false"
-            [counter]="false"
-            [dots]="true"
-            [nav]="false"
-            [autoPlay]="true"
-            [items]="galleryItemList"
-            [imageSize]="'cover'"
-            [itemTemplate]="itemTemplate"
-            fxFlexFill
-            style="position: absolute"
-        ></gallery>
+        <gallery [thumb]="false" [counter]="false" [dots]="true" [nav]="false" [autoPlay]="true"
+            [items]="galleryItemList" [imageSize]="'cover'" [itemTemplate]="itemTemplate" fxFlexFill
+            style="position: absolute"></gallery>
     </div>
 </mat-card>
-<ng-template
-    #itemTemplate
-    let-index="index"
-    let-type="type"
-    let-data="data"
-    let-currIndex="currIndex"
->
+<ng-template #itemTemplate let-index="index" let-type="type" let-data="data" let-currIndex="currIndex">
     <div class="text-container">
         <div class="text" [innerHTML]="data?.description"></div>
     </div>

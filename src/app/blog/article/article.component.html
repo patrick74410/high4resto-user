@@ -1,31 +1,16 @@
 <ng-container *ngIf="article$ | async as article">
-    <section
-        style="max-width: 100%"
-        ngStyle.gt-sm="max-width: 720px"
-        padding-bottom-x2
-    >
-        <mat-toolbar
-            ngClass.lt-md="background-primary"
-            ngClass.gt-sm="margin-top"
-        >
+    <section style="max-width: 100%" ngStyle.gt-sm="max-width: 720px" padding-bottom-x2>
+        <mat-toolbar ngClass.lt-md="background-primary" ngClass.gt-sm="margin-top">
             <button mat-button [routerLink]="['../..']">
                 <mat-icon svgIcon="arrow-left" margin-right-x2></mat-icon>
                 <span>Retour à la liste</span>
             </button>
             <span fxFlex></span>
-            <button
-                mat-icon-button
-                [matMenuTriggerFor]="menu"
-                aria-label="Partager l'article"
-            >
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Partager l'article">
                 <mat-icon svgIcon="share-variant"></mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-                <a
-                    mat-menu-item
-                    *ngFor="let link of shareLinks"
-                    [href]="link.url"
-                >
+                <a mat-menu-item *ngFor="let link of shareLinks" [href]="link.url">
                     <mat-icon [svgIcon]="link.icon"></mat-icon>
                     <span>{{ link.label }}</span>
                 </a>
@@ -37,18 +22,13 @@
         </mat-toolbar>
         <mat-card style="overflow: hidden">
             <div mat-card-image style="position: relative; padding-bottom: 66%">
-                <app-img
-                    fxFlexFill
-                    style="position: absolute"
-                    [src]="article.image"
-                ></app-img>
+                <app-img fxFlexFill style="position: absolute" [src]="article.image"></app-img>
             </div>
             <mat-card-title-group padding-x2 no-padding-bottom>
                 <mat-card-title margin-bottom-x2>{{
                     article.title
-                }}</mat-card-title>
-                <mat-card-subtitle
-                    >Par {{ article.author }} -
+                    }}</mat-card-title>
+                <mat-card-subtitle>Par {{ article.author }} -
                     {{ articleService.getDateString(article.date) }}
                 </mat-card-subtitle>
             </mat-card-title-group>

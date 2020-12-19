@@ -21,7 +21,7 @@ export class ItemSelectorComponent implements OnInit {
         private itemService: ItemService,
         public media: MediaObserver,
         public productService: ProductsService
-    ) {}
+    ) { }
 
-    ngOnInit(): void {}
+    ngOnInit(): void { }
 }

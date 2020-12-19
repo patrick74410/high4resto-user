@@ -1,40 +1,22 @@
 <div style="position: relative; padding-bottom: 66%">
-    <button
-        mat-mini-fab
-        color="primary"
-        style="position: absolute; top: 8px; z-index: 2"
-        ngStyle.lt-md="left:8px"
-        ngStyle.gt-sm="right:8px"
-        mat-dialog-close
-    >
+    <button mat-mini-fab color="primary" style="position: absolute; top: 8px; z-index: 2" ngStyle.lt-md="left:8px"
+        ngStyle.gt-sm="right:8px" mat-dialog-close>
         <mat-icon svgIcon="close"></mat-icon>
     </button>
-    <app-img
-        fxFlexFill
-        style="position: absolute"
-        [src]="item.sourceImage"
-    ></app-img>
+    <app-img fxFlexFill style="position: absolute" [src]="item.sourceImage"></app-img>
 </div>
 
 <div padding-x2>
     <h2 no-margin-bottom>{{ item.name }}</h2>
     <p no-margin-bottom [innerHTML]="item.description"></p>
     <ng-container *ngIf="item.allergenes.length">
-        <button
-            mat-button
-            style="
+        <button mat-button style="
                 height: 24px;
                 font-size: 12px;
                 line-height: 24px;
                 padding: 0 8px;
-            "
-            class="background text-secondary"
-            [matMenuTriggerFor]="menu"
-        >
-            <mat-icon
-                svgIcon="information"
-                style="height: 18px; width: 18px; margin-right: 4px"
-            ></mat-icon>
+            " class="background text-secondary" [matMenuTriggerFor]="menu">
+            <mat-icon svgIcon="information" style="height: 18px; width: 18px; margin-right: 4px"></mat-icon>
             <span>Allergènes</span>
         </button>
         <mat-menu #menu="matMenu">
@@ -45,30 +27,17 @@
     </ng-container>
 </div>
 
-<mat-card
-    *ngFor="let option of item.options"
-    no-padding
-    margin-x2
-    class="mat-elevation-z0 background"
-    style="overflow: hidden"
->
+<mat-card *ngFor="let option of item.options" no-padding margin-x2 class="mat-elevation-z0 background"
+    style="overflow: hidden">
     <mat-toolbar class="text-secondary background">
         {{ option.label }}
     </mat-toolbar>
     <mat-divider></mat-divider>
-    <mat-selection-list
-        [multiple]="!option.unique"
-        #selectionList
-        (selectionChange)="
+    <mat-selection-list [multiple]="!option.unique" #selectionList (selectionChange)="
             applyChoiceToItem(option, selectionList.selectedOptions.selected)
-        "
-    >
-        <mat-list-option
-            *ngFor="let choice of option.options; let index = index"
-            color="primary"
-            [selected]="choice.selected"
-            [value]="index"
-        >
+        ">
+        <mat-list-option *ngFor="let choice of option.options; let index = index" color="primary"
+            [selected]="choice.selected" [value]="index">
             <div matLine>
                 <span fxFlex>{{ choice.label }}</span>
                 <span *ngIf="choice.price">+{{ choice.price }}€</span>
@@ -82,65 +51,27 @@
     <span style="font-weight: 500"> {{ price }}€ </span>
 </div>
 
-<div
-    fxLayout="column"
-    fxLayout.gt-sm="row wrap"
-    fxLayoutGap="16px"
-    fxLayoutAlign="center center"
-    padding-x2
->
-    <ng-container
-        *ngIf="data.mode === 'add'"
-        [ngSwitch]="auth.isAuthenticated$ | async"
-    >
-        <button
-            *ngSwitchCase="true"
-            mat-button
-            color="primary"
-            mat-raised-button
-            class="fab-button-expanded"
-            [disabled]="!optionsFilled() || loading"
-            (click)="addItem()"
-        >
+<div fxLayout="column" fxLayout.gt-sm="row wrap" fxLayoutGap="16px" fxLayoutAlign="center center" padding-x2>
+    <ng-container *ngIf="data.mode === 'add'">
+        <button *ngIf="connected=='true'" mat-button color="primary" mat-raised-button class="fab-button-expanded"
+            [disabled]="!optionsFilled() || loading" (click)="addItem()">
             <mat-icon svgIcon="plus" margin-left-x2 margin-right-x2></mat-icon>
             <span margin-right-x2>Ajouter au panier</span>
         </button>
-        <button
-            *ngSwitchCase="false"
-            mat-button
-            color="primary"
-            mat-raised-button
-            class="fab-button-expanded"
-            (click)="authenticate()"
-        >
+        <button *ngIf="connected!='true'" mat-button color="primary" mat-raised-button class="fab-button-expanded"
+            (click)="authenticate()">
             <mat-icon svgIcon="login" margin-left-x2 margin-right-x2></mat-icon>
             <span margin-right-x2>Connectez vous pour commander</span>
         </button>
     </ng-container>
     <ng-container *ngIf="data.mode === 'edit'">
-        <button
-            mat-button
-            color="primary"
-            mat-raised-button
-            class="fab-button-expanded"
-            [disabled]="loading"
-            (click)="removeItem()"
-        >
-            <mat-icon
-                svgIcon="delete"
-                margin-left-x2
-                margin-right-x2
-            ></mat-icon>
+        <button mat-button color="primary" mat-raised-button class="fab-button-expanded" [disabled]="loading"
+            (click)="removeItem()">
+            <mat-icon svgIcon="delete" margin-left-x2 margin-right-x2></mat-icon>
             <span margin-right-x2>Retirer du panier</span>
         </button>
-        <button
-            mat-button
-            color="primary"
-            mat-raised-button
-            class="fab-button-expanded"
-            [disabled]="loading"
-            (click)="updateItem()"
-        >
+        <button mat-button color="primary" mat-raised-button class="fab-button-expanded" [disabled]="loading"
+            (click)="updateItem()">
             <mat-icon svgIcon="check" margin-left-x2 margin-right-x2></mat-icon>
             <span margin-right-x2>Mettre à jour</span>
         </button>

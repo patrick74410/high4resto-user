@@ -1,64 +1,32 @@
 <ng-container *ngIf="media.isActive('lt-md')">
     <router-outlet></router-outlet>
-    <div
-        fxLayout="column"
-        fxLayoutAlign.lt-md="center center"
-        ngClass.lt-md="fixed-bottom"
-        padding-x2
-    >
-        <button
-            mat-button
-            color="primary"
-            mat-raised-button
-            class="fab-button-expanded"
-            *ngIf="(clientService.client$ | async)?.currentPanier.length"
-            (click)="productsService.openBasketSheet()"
-        >
-            <mat-icon
-                svgIcon="basket"
-                margin-left-x2
-                margin-right-x2
-            ></mat-icon>
-            <span margin-right-x2
-                >Voir le panier {{ productsService.basketPrice }} €</span
-            >
+    <div fxLayout="column" fxLayoutAlign.lt-md="center center" ngClass.lt-md="fixed-bottom" padding-x2>
+        <button mat-button color="primary" mat-raised-button class="fab-button-expanded"
+            *ngIf="(clientService.client$ | async)?.currentPanier.length" (click)="productsService.openBasketSheet()">
+            <mat-icon svgIcon="basket" margin-left-x2 margin-right-x2></mat-icon>
+            <span margin-right-x2>Voir le panier {{ productsService.basketPrice }} €</span>
         </button>
     </div>
 </ng-container>
 <ng-container *ngIf="media.isActive('gt-sm')">
-    <div
-        fxLayout="row"
-        fxLayoutAlign="start start"
-        fxLayoutGap="16px"
-        margin-top-x2
-    >
-        <app-category-selector
-            fxFlex="280px"
-            [categorieList]="productsService.categorieList$ | async"
-        >
+    <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="16px" margin-top-x2>
+        <app-category-selector fxFlex="280px" [categorieList]="productsService.categorieList$ | async">
         </app-category-selector>
-        <app-item-selector
-            fxFlex="1 1 0%"
-            style="width: 0"
-            [itemList]="productsService.itemList$ | async"
-        ></app-item-selector>
+        <app-item-selector fxFlex="1 1 0%" style="width: 0" [itemList]="productsService.itemList$ | async">
+        </app-item-selector>
         <mat-card fxFlex="280px" no-padding>
             <mat-toolbar class="background-surface text-primary">
                 <mat-icon svgIcon="basket" margin-right-x2></mat-icon>
                 Votre panier
             </mat-toolbar>
-            <app-basket-viewer
-                [panier]="(clientService.client$ | async)?.currentPanier"
-                [price]="(clientService.client$ | async)?.price"
-                (itemClicked)="
+            <app-basket-viewer [panier]="(clientService.client$ | async)?.currentPanier"
+                [price]="(clientService.client$ | async)?.price" (itemClicked)="
                     productsService.openItemDetail(
                         $event.item,
                         'edit',
                         $event.index
                     )
-                "
-                (payoutClicked)="productsService.openCommand(productsService.client)"
-            ></app-basket-viewer>
+                " (payoutClicked)="productsService.openCommand(productsService.client)"></app-basket-viewer>
         </mat-card>
     </div>
 </ng-container>

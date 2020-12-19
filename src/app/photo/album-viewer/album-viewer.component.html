@@ -1,19 +1,9 @@
 <mat-card style="height: 100%" style="overflow: hidden" matRipple>
     <div mat-card-image style="position: relative; padding-bottom: 66%">
-        <app-img
-            fxFlexFill
-            style="position: absolute"
-            [src]="album.topImage"
-        ></app-img>
+        <app-img fxFlexFill style="position: absolute" [src]="album.topImage"></app-img>
     </div>
 
     <mat-card-title margin-bottom-x2>{{ album.name }}</mat-card-title>
-    <mat-card-subtitle
-        ngClass.lt-md="clamp-2"
-        ngClass.gt-sm="clamp-3"
-        no-margin-bottom
-        style="height: 20px"
-    >
-        {{ album.description }}</mat-card-subtitle
-    >
+    <mat-card-subtitle ngClass.lt-md="clamp-2" ngClass.gt-sm="clamp-3" no-margin-bottom style="height: 20px">
+        {{ album.description }}</mat-card-subtitle>
 </mat-card>

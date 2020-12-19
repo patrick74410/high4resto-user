@@ -8,9 +8,9 @@ describe('IdentityCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ IdentityCardComponent ]
+      declarations: [IdentityCardComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

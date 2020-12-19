@@ -28,9 +28,9 @@ import { GalleryModule } from 'ng-gallery';
 import { LightboxModule } from 'ng-gallery/lightbox';
 import { ComponentsModule } from 'src/components/components.module';
 import { PipesModule } from 'src/pipes/pipes.module';
-import {MatStepperModule} from '@angular/material/stepper';
+import { MatStepperModule } from '@angular/material/stepper';
 import { ReactiveFormsModule } from '@angular/forms';
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 
 const materialModules = [
     MatCardModule,
@@ -72,4 +72,4 @@ const materialModules = [
         PipesModule,
     ],
 })
-export class SharedModule {}
+export class SharedModule { }

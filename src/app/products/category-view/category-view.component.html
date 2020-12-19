@@ -4,8 +4,7 @@
     </button>
     <h3 margin-left-x3 text-accent *ngIf="appTitle.appTitle$ | async as title">
         {{ title }}
-    </h3> </mat-toolbar
-><app-category-selector
-    [categorieList]="productsService.categorieList$ | async"
->
+    </h3>
+</mat-toolbar>
+<app-category-selector [categorieList]="productsService.categorieList$ | async">
 </app-category-selector>

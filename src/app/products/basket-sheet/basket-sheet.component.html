@@ -1,8 +1,6 @@
 <mat-toolbar class="background-surface text-primary">
     <mat-icon svgIcon="basket" margin-right-x2></mat-icon>
-    Votre panier </mat-toolbar
-><app-basket-viewer
-    [panier]="(data.client$ | async)?.currentPanier"
-    [price]="(data.client$ | async)?.price"
-    (itemClicked)="data.onItemClick($event.item, $event.index)"
-></app-basket-viewer>
+    Votre panier
+</mat-toolbar>
+<app-basket-viewer [panier]="(data.client$ | async)?.currentPanier" [price]="(data.client$ | async)?.price"
+    (itemClicked)="data.onItemClick($event.item, $event.index)"></app-basket-viewer>

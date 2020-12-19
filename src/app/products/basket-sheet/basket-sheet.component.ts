@@ -15,7 +15,7 @@ export class BasketSheetComponent implements OnInit {
             client$: Observable<ClientI>;
             onItemClick: any;
         }
-    ) {}
+    ) { }
 
-    ngOnInit(): void {}
+    ngOnInit(): void { }
 }

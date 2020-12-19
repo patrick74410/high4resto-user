@@ -1,12 +1,6 @@
 <ng-container *ngIf="homePageService.homePage$ | async as homePage">
-    <div
-        fxLayout="column"
-        fxLayout.gt-sm="row"
-        fxLayoutGap="16px"
-        margin-top-x2
-        ngClass.lt-md="padding-left-x2 padding-right-x2"
-        margin-bottom-x2
-    >
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap="16px" margin-top-x2
+        ngClass.lt-md="padding-left-x2 padding-right-x2" margin-bottom-x2>
         <div fxLayout="column" fxFlex fxLayoutGap="16px">
             <h1 class="mat-display-1" style="line-height: 48px" margin-left-x2>
                 Bienvenue sur le site de notre restaurant
@@ -16,60 +10,34 @@
                 Découvrez nos derniers articles
             </p>
             <div class="grid-container">
-                <app-article-preview
-                    *ngFor="let article of homePage.onTop; let index = index"
-                    [article]="article"
+                <app-article-preview *ngFor="let article of homePage.onTop; let index = index" [article]="article"
                     [vertical]="
                         !(
                             index % 2 === 0 &&
                             index === homePage.onTop.length - 1
                         ) && !media.isActive('lt-md')
-                    "
-                    [ngClass]="{
+                    " [ngClass]="{
                         span:
                             (index % 2 === 0 &&
                                 index === homePage.onTop.length - 1) ||
                             media.isActive('lt-md')
-                    }"
-                    [routerLink]="[
+                    }" [routerLink]="[
                         'blog',
                         article.categorie.id,
                         'article',
                         article.id
-                    ]"
-                ></app-article-preview>
+                    ]"></app-article-preview>
             </div>
         </div>
-        <div
-            fxLayout="column"
-            fxFlex.gt-sm="400px"
-            fxLayoutGap="16px"
-            [ngStyle.lt-md]="{ 'padding-bottom.px': 64 }"
-        >
-            <div
-                fxLayout="column"
-                fxLayoutAlign.lt-md="center center"
-                ngClass.lt-md="fixed-bottom"
-            >
-                <button
-                    color="primary"
-                    mat-raised-button
-                    class="fab-button-expanded"
-                    [routerLink]="['products']"
-                >
-                    <mat-icon
-                        svgIcon="basket"
-                        margin-left-x2
-                        margin-right-x2
-                    ></mat-icon>
+        <div fxLayout="column" fxFlex.gt-sm="400px" fxLayoutGap="16px" [ngStyle.lt-md]="{ 'padding-bottom.px': 64 }">
+            <div fxLayout="column" fxLayoutAlign.lt-md="center center" ngClass.lt-md="fixed-bottom">
+                <button color="primary" mat-raised-button class="fab-button-expanded" [routerLink]="['products']">
+                    <mat-icon svgIcon="basket" margin-left-x2 margin-right-x2></mat-icon>
                     <span margin-right-x2>Commander en ligne</span>
                 </button>
             </div>
 
-            <app-identity-card
-                [identite]="homePage.identite"
-                [horaire]="homePage.horaire"
-            ></app-identity-card>
+            <app-identity-card [identite]="homePage.identite" [horaire]="homePage.horaire"></app-identity-card>
         </div>
     </div>
 </ng-container>

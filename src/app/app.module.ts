@@ -35,4 +35,4 @@ import { SharedModule } from './shared.module';
         },
     ],
 })
-export class AppModule {}
+export class AppModule { }

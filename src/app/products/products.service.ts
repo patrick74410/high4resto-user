@@ -17,7 +17,7 @@ export class ProductsService {
     itemList$ = new ReplaySubject<ItemCarteI[]>(1);
     categorieList$ = new ReplaySubject<ItemCategorieI[]>(1);
     basketPrice = 0;
-    client:ClientI;
+    client: ClientI;
 
     constructor(
         private itemService: ItemService,
@@ -28,7 +28,7 @@ export class ProductsService {
     ) {
         this.initCategories();
         this.clientService.client$.subscribe((client) => {
-            this.client=client;
+            this.client = client;
             this.basketPrice = client.currentPanier.reduce(
                 (sum, itemB) => sum + itemB.price,
                 0
@@ -73,9 +73,9 @@ export class ProductsService {
         this.dialog.open(ItemDetailDialogComponent, config);
     }
 
-    openCommand(client:ClientI):void {
+    openCommand(client: ClientI): void {
         const config = new MatDialogConfig();
-        config.data={client}
+        config.data = { client }
         if (this.media.isActive('lt-md')) {
             config.minWidth = '100%';
             config.minHeight = '100%';

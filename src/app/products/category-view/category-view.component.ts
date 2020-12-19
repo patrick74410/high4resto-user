@@ -15,7 +15,7 @@ export class CategoryViewComponent implements OnInit {
         public productsService: ProductsService,
         public drawerService: DrawerService,
         public appTitle: AppTitleService
-    ) {}
+    ) { }
 
-    ngOnInit(): void {}
+    ngOnInit(): void { }
 }

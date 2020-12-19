@@ -20,7 +20,7 @@ export class BasketViewerComponent implements OnInit {
     @Output() payoutClicked = new EventEmitter();
     _panier: ItemCarteI[] = [];
     fullPrice = 0;
-    constructor(public clientService: ClientService) {}
+    constructor(public clientService: ClientService) { }
 
-    ngOnInit(): void {}
+    ngOnInit(): void { }
 }

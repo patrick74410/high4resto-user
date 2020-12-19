@@ -8,9 +8,9 @@ describe('BasketSheetComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BasketSheetComponent ]
+      declarations: [BasketSheetComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

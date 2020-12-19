@@ -18,7 +18,7 @@ export class PhotoListComponent implements OnInit {
         public gallery: Gallery,
         public media: MediaObserver,
         private changeDetector: ChangeDetectorRef
-    ) {}
+    ) { }
 
     ngOnInit(): void {
         this.initPhotoList();

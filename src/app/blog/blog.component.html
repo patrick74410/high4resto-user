@@ -1,16 +1,7 @@
 <section padding-top-x2 style="max-width: 720px">
     <p class="mat-body-2" margin-left-x2>Découvrez nos derniers articles</p>
-    <div
-        fxLayout="column"
-        fxLayoutGap="16px"
-        margin-bottom-x2
-        ngClass.lt-md="padding-left-x2 padding-right-x2"
-    >
-        <app-article-preview
-            *ngFor="let article of articleList$ | async; let index = index"
-            [article]="article"
-            [vertical]="media.isActive('lt-md')"
-            [routerLink]="['article', article.id]"
-        ></app-article-preview>
+    <div fxLayout="column" fxLayoutGap="16px" margin-bottom-x2 ngClass.lt-md="padding-left-x2 padding-right-x2">
+        <app-article-preview *ngFor="let article of articleList$ | async; let index = index" [article]="article"
+            [vertical]="media.isActive('lt-md')" [routerLink]="['article', article.id]"></app-article-preview>
     </div>
 </section>

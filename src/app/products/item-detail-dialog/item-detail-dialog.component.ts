@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MediaObserver } from '@angular/flex-layout';
 import {
-    MatDialog,
     MatDialogRef,
     MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
@@ -11,6 +10,7 @@ import { first } from 'rxjs/operators';
 import { ItemCarteI } from 'src/interfaces/ItemCarteI';
 import { OptionsItemI } from 'src/interfaces/OptionsItem';
 import { ClientService } from 'src/services/client.service';
+import { LocalstorageService } from 'src/services/localStorage.service';
 
 @Component({
     selector: 'app-item-detail-dialog',
@@ -21,6 +21,7 @@ export class ItemDetailDialogComponent implements OnInit {
     item: ItemCarteI = JSON.parse(JSON.stringify(this.data.item));
     loading = false;
     price = 0;
+    connected: string;
     constructor(
         @Inject(MAT_DIALOG_DATA)
         public data: {
@@ -29,14 +30,17 @@ export class ItemDetailDialogComponent implements OnInit {
             itemIndex?: number;
         },
         private dialogRef: MatDialogRef<ItemDetailDialogComponent>,
-        private dialog: MatDialog,
         public media: MediaObserver,
         public auth: AuthService,
-        private clientService: ClientService
-    ) {}
+        private clientService: ClientService,
+        private storage: LocalstorageService
+    ) {
+        this.connected = storage.getItem("connected");
+    }
 
     ngOnInit(): void {
         this.updateItemPrice();
+
     }
     updateItemPrice(): void {
         this.price = this.clientService.calculateItemPrice(this.item);

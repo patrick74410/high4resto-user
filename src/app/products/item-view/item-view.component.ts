@@ -14,7 +14,7 @@ export class ItemViewComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         public productsService: ProductsService
-    ) {}
+    ) { }
 
     async ngOnInit(): Promise<void> {
         this.title = await this.getCategorieTitle();

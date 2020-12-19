@@ -30,7 +30,7 @@ export class ArticleComponent implements OnInit {
         private route: ActivatedRoute,
         public articleService: ArticleService,
         public media: MediaObserver
-    ) {}
+    ) { }
 
     ngOnInit(): void {
         this.initArticle();

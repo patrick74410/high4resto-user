@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
         private appTitle: AppTitleService,
         public homePageService: HomePageService,
         public media: MediaObserver
-    ) {}
+    ) { }
 
     ngOnInit(): void {
         this.appTitle.setTitle('Accueil');

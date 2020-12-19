@@ -8,9 +8,9 @@ describe('BasketViewerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BasketViewerComponent ]
+      declarations: [BasketViewerComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

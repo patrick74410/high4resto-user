@@ -24,7 +24,7 @@ export class BlogComponent implements OnInit {
         private route: ActivatedRoute,
         private articleService: ArticleService,
         public media: MediaObserver
-    ) {}
+    ) { }
 
     ngOnInit(): void {
         this.initBlog();

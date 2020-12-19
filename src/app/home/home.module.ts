@@ -10,4 +10,4 @@ import { IdentityCardComponent } from './identity-card/identity-card.component';
     declarations: [HomeComponent, CarousselComponent, IdentityCardComponent],
     imports: [CommonModule, SharedModule, BlogModule],
 })
-export class HomeModule {}
+export class HomeModule { }

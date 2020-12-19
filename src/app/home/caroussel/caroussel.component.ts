@@ -24,8 +24,8 @@ export class CarousselComponent implements OnInit {
         this.galleryItemList = galleryItemList;
     }
 
-    constructor(private imgService: ImageService) {}
-    ngOnInit(): void {}
+    constructor(private imgService: ImageService) { }
+    ngOnInit(): void { }
     resolveGridId(gridId): string {
         return this.imgService.resolveImageByGridId(gridId);
     }

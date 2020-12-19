@@ -8,9 +8,9 @@ describe('AlbumViewerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AlbumViewerComponent ]
+      declarations: [AlbumViewerComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

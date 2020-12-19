@@ -1,33 +1,15 @@
 <mat-card style="overflow: hidden" matRipple>
-    <div
-        mat-card-image
-        *ngIf="vertical"
-        style="position: relative; padding-bottom: 66%"
-    >
-        <app-img
-            fxFlexFill
-            style="position: absolute"
-            [src]="article.image"
-        ></app-img>
+    <div mat-card-image *ngIf="vertical" style="position: relative; padding-bottom: 66%">
+        <app-img fxFlexFill style="position: absolute" [src]="article.image"></app-img>
     </div>
     <div fxLayout="row" fxLayoutGap="16px;">
-        <div
-            fxLayout="column"
-            fxFlex
-            ngClass.gt-sm="padding-x2"
-            style="overflow: hidden"
-        >
+        <div fxLayout="column" fxFlex ngClass.gt-sm="padding-x2" style="overflow: hidden">
             <div>
                 <mat-card-title margin-bottom-x2>{{
                     article.title
-                }}</mat-card-title>
-                <mat-card-subtitle
-                    ngClass.lt-md="clamp-2"
-                    ngClass.gt-sm="clamp-3"
-                    no-margin-bottom
-                >
-                    {{ article.resume }}</mat-card-subtitle
-                >
+                    }}</mat-card-title>
+                <mat-card-subtitle ngClass.lt-md="clamp-2" ngClass.gt-sm="clamp-3" no-margin-bottom>
+                    {{ article.resume }}</mat-card-subtitle>
             </div>
             <span class="mat-caption text-secondary" margin-top>
                 {{ article.author }} -
@@ -36,11 +18,7 @@
         </div>
         <div *ngIf="!vertical" fxFlex="33%" margin-left-x2>
             <div style="position: relative; padding-bottom: 66%">
-                <app-img
-                    fxFlexFill
-                    style="position: absolute"
-                    [src]="article.image"
-                ></app-img>
+                <app-img fxFlexFill style="position: absolute" [src]="article.image"></app-img>
             </div>
         </div>
     </div>

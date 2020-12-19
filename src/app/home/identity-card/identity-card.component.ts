@@ -17,9 +17,9 @@ export class IdentityCardComponent implements OnInit {
     @Input() identite: IdentiteI;
     @Input() horaire: HoraireI;
 
-    constructor() {}
+    constructor() { }
 
-    ngOnInit(): void {}
+    ngOnInit(): void { }
 
     get fullAddress(): string {
         return `${this.identite.adresse}, ${this.identite.zip} ${this.identite.city}`;

@@ -31,4 +31,4 @@ const routes: Routes = [
     ],
     imports: [CommonModule, RouterModule.forChild(routes), SharedModule],
 })
-export class ProductsModule {}
+export class ProductsModule { }

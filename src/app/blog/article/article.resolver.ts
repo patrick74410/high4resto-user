@@ -14,7 +14,7 @@ export class ArticleResolver implements Resolve<ArticleI> {
     constructor(
         private articleService: ArticleService,
         private metaService: Meta
-    ) {}
+    ) { }
 
     async resolve(
         route: ActivatedRouteSnapshot,

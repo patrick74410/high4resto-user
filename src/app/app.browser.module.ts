@@ -19,4 +19,4 @@ import { browserInitializer } from './browser.initializer';
     ],
     bootstrap: [AppComponent],
 })
-export class AppBrowserModule {}
+export class AppBrowserModule { }

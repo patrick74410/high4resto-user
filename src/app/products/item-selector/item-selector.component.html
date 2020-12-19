@@ -1,36 +1,18 @@
-<mat-card
-    ngClass.lt-md="mat-elevation-z0"
-    ngStyle.lt-md="background:transparent"
->
+<mat-card ngClass.lt-md="mat-elevation-z0" ngStyle.lt-md="background:transparent">
     <mat-action-list>
         <p mat-subheader>Ajoutez un produit à votre panier</p>
-        <mat-card
-            *ngFor="let item of itemList"
-            no-padding
-            ngClass.gt-sm="mat-elevation-z0"
-            ngClass.lt-md="margin-bottom-x2"
-        >
-            <button
-                mat-list-item
-                style="height: 112px"
-                (click)="productService.openItemDetail(item, 'add')"
-                [disabled]="item.stock.length === 0"
-            >
-                <app-img
-                    matListAvatar
-                    [src]="item.sourceImage"
-                    [mini]="true"
-                    margin-right
-                    style="width: 96px; height: 96px"
-                ></app-img>
+        <mat-card *ngFor="let item of itemList" no-padding ngClass.gt-sm="mat-elevation-z0"
+            ngClass.lt-md="margin-bottom-x2">
+            <button mat-list-item style="height: 112px" (click)="productService.openItemDetail(item, 'add')"
+                [disabled]="item.stock.length === 0">
+                <app-img matListAvatar [src]="item.sourceImage" [mini]="true" margin-right
+                    style="width: 96px; height: 96px"></app-img>
                 <p matLine>
                     <span class="mat-title">{{ item.name }}</span>
                 </p>
                 <p matLine>
                     <span>{{ item.remarque }}</span>
-                    <span *ngIf="item.stock < 5" class="text-warn"
-                        >Il n'en reste plus que {{ item.stock }}</span
-                    >
+                    <span *ngIf="item.stock < 5" class="text-warn">Il n'en reste plus que {{ item.stock }}</span>
                 </p>
             </button>
         </mat-card>
