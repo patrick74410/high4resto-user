@@ -83,9 +83,11 @@ export class ProductsService {
             config.width = '100%';
             config.panelClass = 'dialog-fullscreen';
             config.closeOnNavigation = false;
+            config.disableClose = true;
         } else {
             config.width = '640px';
             config.maxHeight = '90vh';
+            config.disableClose = true;
         }
         // Transformer le panier en commande
         // puis affichage

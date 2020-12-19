@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { first } from 'rxjs/operators';
 import { ClientI } from 'src/interfaces/Client';
+import { BasketResume } from 'src/interfaces/commande/basketResume';
+import { CommandeResume } from 'src/interfaces/commande/commandeResume';
 import { CommandeI } from 'src/interfaces/CommandeI';
 import { ClientService } from 'src/services/client.service';
 
@@ -14,12 +16,15 @@ import { ClientService } from 'src/services/client.service';
 })
 export class CommandComponent implements OnInit {
   client: ClientI = JSON.parse(JSON.stringify(this.data.client));
-
+  isCommandeGenerate:boolean=false;
   coordinate:FormGroup;
   deleveryMode: FormGroup;
   validate: FormGroup;
   timeToTake: FormGroup;
   commande:CommandeI;
+  basketResume:BasketResume=new BasketResume();
+  commandeResume:CommandeResume=new CommandeResume();
+  displayedColumns: string[] = ['qty', 'productName', 'priceTTC', 'priceFN'];
 
   constructor(private _formBuilder: FormBuilder,private clientService: ClientService,@Inject(MAT_DIALOG_DATA)
   public data: {client}) { }
@@ -37,10 +42,14 @@ export class CommandComponent implements OnInit {
     }
     if(event.selectedIndex==2)
     {
-      this.clientService.generateCommande().pipe(first()).subscribe(client=>{
-        this.commande=client.commande;
-        console.log(client);
-      })
+      if(!this.isCommandeGenerate)
+      {
+        this.clientService.generateCommande(this.deleveryMode.get("mode").value).pipe(first()).subscribe(client=>{
+          this.commande=client.commande;
+          this.commandeResume=this.clientService.generateCommandeResume(client.commande.items);
+          this.basketResume=this.clientService.generateBasketResume(client.currentPanier);
+        })
+      }
     }
   }
 

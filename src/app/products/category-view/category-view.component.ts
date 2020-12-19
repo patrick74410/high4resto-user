@@ -12,7 +12,6 @@ import { ProductsService } from '../products.service';
 })
 export class CategoryViewComponent implements OnInit {
     constructor(
-        private itemService: ItemService,
         public productsService: ProductsService,
         public drawerService: DrawerService,
         public appTitle: AppTitleService

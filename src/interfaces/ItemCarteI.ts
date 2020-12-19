@@ -13,7 +13,12 @@ export interface ItemCarteI {
     // Description
     description: string;
     // Prix
-    price: number;
+    price: number;              //prix de base TTC sans promotion sans options
+    priceHT?:number;            //prix hors taxe avec promotion et options
+    priceFN?:number;            //prix TTX avec promotion et optionsItem
+    promotionM?:number;         //prix des promotions seules
+    tvaPrice?:number;           //prix
+    longName: string;           //Nom long
     // Ordre d'affichage
     order: number;
     // Image
@@ -33,4 +38,5 @@ export interface ItemCarteI {
     // Quantitée disponible
     stock: number;
     remarque: string;
+
 }

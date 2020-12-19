@@ -1,4 +1,4 @@
-<mat-horizontal-stepper linear="true" linear (selectionChange)="selectionChange($event)">
+<mat-vertical-stepper linear="true" linear (selectionChange)="selectionChange($event)">
     <mat-step [stepControl]="coordinate">
         <form [formGroup]="coordinate">
             <ng-template matStepLabel>Vos coordonnées</ng-template>
@@ -8,7 +8,7 @@
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Prénom</mat-label>
-                <input matInput  formControlName="lastName" required>
+                <input matInput formControlName="lastName" required>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Addresse</mat-label>
@@ -27,38 +27,64 @@
                 <mat-label>Ville</mat-label>
                 <input matInput formControlName="city">
             </mat-form-field>
-            <div>
-                <button mat-button matStepperNext>Suivant</button>
-            </div>
         </form>
     </mat-step>
     <mat-step [stepControl]="deleveryMode">
         <form [formGroup]="deleveryMode">
-            <ng-template matStepLabel>Choix du mode de livraison</ng-template>
+            <ng-template matStepLabel>Mode de livraison</ng-template>
             <mat-selection-list multiple="false" formControlName="mode" required>
-                <mat-list-option value="Click&Collect" selected="true">
+                <mat-list-option value="Click&Collect">
                     <div matLine>
                         <span fxFlex>Click&Collect</span>
                     </div>
                 </mat-list-option>
                 <mat-list-option value="ToDelivery">
                     <div matLine>
-                        <span fxFlex>Livraison</span>
+                        <span fxFlex>Livraison à domicile</span>
                     </div>
                 </mat-list-option>
             </mat-selection-list>
-            <div>
-                <button mat-button matStepperNext>Suivant</button>
-            </div>
         </form>
     </mat-step>
     <mat-step [stepControl]="validate">
         <form [formGroup]="validate">
-            <ng-template matStepLabel>Validation de la commande</ng-template>
+            <ng-template matStepLabel>Validation</ng-template>
+            <ng-container *ngIf="client.currentPanier.length>0">
+                <p style="color:red"><b>Certains produits ne sont plus en stock!</b></p>
+                <ul *ngFor="let item of basketResume.items">
+                    <li>{{item.qty}} X {{item.productName}}</li>
+                </ul>
+                <hr />
+            </ng-container>
+            <h3>Résumé de la commande</h3>
+            <table mat-table [dataSource]="commandeResume.items" class="mat-elevation-z8" style="width:100%">
+                <ng-container matColumnDef="qty">
+                    <th mat-header-cell *matHeaderCellDef>Quantité</th>
+                    <td mat-cell *matCellDef="let item"> {{item.qty}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="productName">
+                    <th mat-header-cell *matHeaderCellDef>Nom du produit</th>
+                    <td mat-cell *matCellDef="let item"> {{item.productName}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="priceTTC">
+                    <th mat-header-cell *matHeaderCellDef> Prix unitaire </th>
+                    <td mat-cell *matCellDef="let item"> {{item.priceTTC}}€ </td>
+                </ng-container>
+
+                <ng-container matColumnDef="priceFN">
+                    <th mat-header-cell *matHeaderCellDef> Sous-total </th>
+                    <td mat-cell *matCellDef="let item"> {{item.priceTTC*item.qty}}€ </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            </table>
+            <br/>
+            <p><b>Total : {{commandeResume.totalPrice}}€ dont {{commandeResume.totalTva}}€ de TVA</b></p>
             <mat-checkbox formControlName="validate">Je valide la commande</mat-checkbox>
-            <div>
-                <button mat-button matStepperNext>Suivant</button>
-            </div>
         </form>
     </mat-step>
-</mat-horizontal-stepper>
+</mat-vertical-stepper>

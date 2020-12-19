@@ -30,6 +30,7 @@ import { ComponentsModule } from 'src/components/components.module';
 import { PipesModule } from 'src/pipes/pipes.module';
 import {MatStepperModule} from '@angular/material/stepper';
 import { ReactiveFormsModule } from '@angular/forms';
+import {MatTableModule} from '@angular/material/table';
 
 const materialModules = [
     MatCardModule,
@@ -55,7 +56,8 @@ const materialModules = [
     MatSidenavModule,
     MatExpansionModule,
     MatStepperModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTableModule
 ];
 
 @NgModule({
