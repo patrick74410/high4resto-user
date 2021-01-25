@@ -13,16 +13,15 @@
                     <p matLine>{{ nav.label }}</p>
                 </a>
                 <mat-divider margin-top margin-bottom></mat-divider>
-                <ng-container [ngSwitch]="connected | async">
-                    <a mat-list-item *ngSwitchCase="" (click)="authenticate()">
-                        <mat-icon matListIcon class="text-secondary" svgIcon="login"></mat-icon>
-                        <p matLine>Connexion</p>
-                    </a>
-                    <a mat-list-item *ngSwitchCase="true" (click)="logout()">
-                        <mat-icon matListIcon class="text-secondary" svgIcon="logout"></mat-icon>
-                        <p matLine>Déconnexion</p>
-                    </a>
-                </ng-container>
+                <a mat-list-item *ngIf="connected!='true'" (click)="authenticate()">
+                    <mat-icon matListIcon class="text-secondary" svgIcon="login"></mat-icon>
+                    <p matLine>Connexion</p>
+                </a>
+                <a mat-list-item *ngIf="connected=='true'" (click)="logout()">
+                    <mat-icon matListIcon class="text-secondary" svgIcon="logout"></mat-icon>
+                    <p matLine>Déconnexion</p>
+                </a>
+
             </mat-nav-list>
         </mat-drawer>
         <mat-drawer-content>

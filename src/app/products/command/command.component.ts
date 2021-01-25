@@ -25,6 +25,8 @@ export class CommandComponent implements OnInit {
   basketResume: BasketResume = new BasketResume();
   commandeResume: CommandeResume = new CommandeResume();
   displayedColumns: string[] = ['qty', 'productName', 'priceTTC', 'priceFN'];
+  isToDelivery: boolean = false;
+
 
   constructor(private _formBuilder: FormBuilder, private clientService: ClientService, @Inject(MAT_DIALOG_DATA)
   public data: { client }) { }
@@ -47,6 +49,12 @@ export class CommandComponent implements OnInit {
           this.basketResume = this.clientService.generateBasketResume(client.currentPanier);
         })
       }
+      if (this.deleveryMode.get("mode").value == "0") {
+        this.isToDelivery = false;
+      }
+      else {
+        this.isToDelivery = true;
+      }
     }
   }
 
@@ -54,10 +62,10 @@ export class CommandComponent implements OnInit {
     this.coordinate = this._formBuilder.group({
       name: ['', Validators.required],
       lastName: ['', Validators.required],
-      adresseL1: [''],
+      adresseL1: ['', Validators.required],
       adresseL2: [''],
-      zip: [''],
-      city: ['']
+      zip: ['', Validators.required],
+      city: ['', Validators.required]
     });
     this.deleveryMode = this._formBuilder.group({
       mode: ['', Validators.required]

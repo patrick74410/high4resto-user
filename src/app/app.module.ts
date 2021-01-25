@@ -11,6 +11,7 @@ import { BlogModule } from './blog/blog.module';
 import { HomeModule } from './home/home.module';
 import { PhotoModule } from './photo/photo.module';
 import { ProductsModule } from './products/products.module';
+import { ProductsService } from './products/products.service';
 import { SharedModule } from './shared.module';
 
 @NgModule({
@@ -26,7 +27,7 @@ import { SharedModule } from './shared.module';
         BlogModule,
         PhotoModule,
     ],
-    providers: [
+    providers: [ProductsService,
         {
             provide: APP_INITIALIZER,
             useFactory: appInitializer, // <- pass your initializer function here

@@ -76,21 +76,14 @@ export class ProductsService {
     openCommand(client: ClientI): void {
         const config = new MatDialogConfig();
         config.data = { client }
-        if (this.media.isActive('lt-md')) {
-            config.minWidth = '100%';
-            config.minHeight = '100%';
-            config.height = '100%';
-            config.width = '100%';
-            config.panelClass = 'dialog-fullscreen';
-            config.closeOnNavigation = false;
-            config.disableClose = true;
-        } else {
-            config.width = '640px';
-            config.maxHeight = '90vh';
-            config.disableClose = true;
-        }
-        // Transformer le panier en commande
-        // puis affichage
+        config.minWidth = '100%';
+        config.minHeight = '100%';
+        config.height = '100%';
+        config.width = '100%';
+        config.panelClass = 'dialog-fullscreen';
+        config.closeOnNavigation = false;
+        config.disableClose = true;
+
         this.dialog.open(CommandComponent, config);
     }
 

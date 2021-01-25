@@ -2,11 +2,10 @@ import {
     ChangeDetectionStrategy,
     Component,
     Input,
-    OnInit,
+    OnInit
 } from '@angular/core';
 import { MediaObserver } from '@angular/flex-layout';
 import { ItemCarteI } from 'src/interfaces/ItemCarteI';
-import { ItemService } from 'src/services/item.service';
 import { ProductsService } from '../products.service';
 
 @Component({
@@ -18,7 +17,6 @@ import { ProductsService } from '../products.service';
 export class ItemSelectorComponent implements OnInit {
     @Input() itemList: ItemCarteI;
     constructor(
-        private itemService: ItemService,
         public media: MediaObserver,
         public productService: ProductsService
     ) { }

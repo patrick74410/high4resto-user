@@ -16,6 +16,6 @@
     <button (click)="payoutClicked.emit(clientService.getClient())" mat-button color="primary" mat-raised-button
         class="fab-button-expanded" [disabled]="!_panier.length">
         <mat-icon svgIcon="credit-card" margin-left-x2 margin-right-x2></mat-icon>
-        <span margin-right-x2>Régler la commande</span>
+        <span (click)="productsService.openCommand(productsService.client)" margin-right-x2>Régler la commande</span>
     </button>
 </div>

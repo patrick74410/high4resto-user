@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ItemCarteI } from 'src/interfaces/ItemCarteI';
 import { ClientService } from 'src/services/client.service';
+import { ProductsService } from '../products.service';
 
 @Component({
     selector: 'app-basket-viewer',
@@ -20,7 +21,7 @@ export class BasketViewerComponent implements OnInit {
     @Output() payoutClicked = new EventEmitter();
     _panier: ItemCarteI[] = [];
     fullPrice = 0;
-    constructor(public clientService: ClientService) { }
+    constructor(public clientService: ClientService, public productsService: ProductsService) { }
 
     ngOnInit(): void { }
 }
