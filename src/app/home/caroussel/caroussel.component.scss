@@ -7,13 +7,9 @@
     overflow: hidden;
 
     .text {
-        text-align: center;
         max-height: 20px;
         line-height: 18px;
         font-size: 18px;
         font-weight: 400;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
     }
 }

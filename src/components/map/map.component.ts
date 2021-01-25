@@ -16,12 +16,13 @@ export class MapComponent implements OnInit {
     display: any;
     option: google.maps.MapOptions = {
         fullscreenControl: false,
+        gestureHandling: 'none',
         mapTypeControl: false,
     };
     constructor(
         private homePageService: HomePageService,
         public mapService: MapService
-    ) {}
+    ) { }
 
     ngOnInit() {
         this.center = {

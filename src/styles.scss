@@ -82,3 +82,29 @@ body {
 .mat-list-single-selected-option {
     @extend .background-primary;
 }
+p
+{
+    font: 400 18px/22px Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-typography h3 {
+    font: 400 26px/28px Roboto, "Helvetica Neue", sans-serif;
+    letter-spacing: normal;
+    margin: 0 0 16px;
+}
+.mat-typography h2 {
+    font: 400 24px/28px Roboto, "Helvetica Neue", sans-serif;
+    letter-spacing: normal;
+    margin: 0 0 16px;
+}
+
+.mat-typography h3 {
+    font: 400 22px/28px Roboto, "Helvetica Neue", sans-serif;
+    letter-spacing: normal;
+    margin: 0 0 16px;
+}
+h4
+{
+    font-size: 18px;
+    font-weight: bold;
+}
